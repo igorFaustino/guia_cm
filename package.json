@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/igorFaustino/guia_cm/issues"
   },
-  "homepage": "https://github.com/igorFaustino/guia_cm#readme"
+  "homepage": "https://github.com/igorFaustino/guia_cm#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
 }
