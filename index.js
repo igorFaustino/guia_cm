@@ -28,10 +28,19 @@ var port = 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(express.static(path.join(__dirname, 'react-src/build')));
+
+// rotas!
+var maps = require('./routes/maps');
+
+app.use('/api/maps', maps);
+
 // default route
-app.get('/', function (req, res){
-	res.send('<h1>Hello World</h1>');
+// direciona todas as rotas para o arquivo principal do frontend -> arquivo ainda não criado!!!
+app.get('*', function(req, res) {
+	res.sendFile(path.join(__dirname, 'react-src/build/index.html'));
 });
+
 
 app.listen(port, function () {
 	console.log('app listening on port ' + port);
