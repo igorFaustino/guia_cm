@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/igorFaustino/guia_cm#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.8"
   }
 }
