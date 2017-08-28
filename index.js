@@ -4,19 +4,17 @@ var bodyParser = require('body-parser'); // require body-parser -> pegar informa
 var mongoose = require('mongoose'); // require mongoose -> banco de dados
 const config = require('./config/database.js'); // database config
 
-// Banco de dados ainda não criado !!!
-//////////////////////////////////////////////////////////////////////////
 
-// conectando ao banco de dados
-// mongoose.connect(config.database, {
-// 	useMongoClient: true,
-// });
-// // on connetion
-// mongoose.connection.on('connected', function () {
-// 	console.log('Connect to database');
-// });
+//conectando ao banco de dados
+mongoose.connect(config.database, {
+	useMongoClient: true,
+});
 
-//////////////////////////////////////////////////////////////////////////
+// testa conexão!
+mongoose.connection.on('connected', function () {
+	console.log('Connect to database');
+});
+
 
 // iniciando express. 
 var app = express();
