@@ -15,23 +15,27 @@ mongoose.connection.on('connected', function () {
 	console.log('Connect to database');
 });
 
-
 // iniciando express. 
 var app = express();
+
+// rotas!
+var maps = require('./routes/maps');
+var locals = require('./routes/locals');
+
 
 // set port
 var port = 5000;
 
-// configurando body-parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
-app.use(express.static(path.join(__dirname, 'react-src/build')));
-
-// rotas!
-var maps = require('./routes/maps');
+// Set Static Folder 
+app.use(express.static(path.join(__dirname, 'public'))); 
+ 
+// Body Parser MW 
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: false})); 
 
 app.use('/api/maps', maps);
+app.use('/api', locals);
+
 
 // default route
 // direciona todas as rotas para o arquivo principal do frontend -> arquivo ainda não criado!!!

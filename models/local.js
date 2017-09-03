@@ -22,7 +22,7 @@ var LocalSchema = mongoose.Schema({
 	}],
 	endereco: {
 		type: String
-	}
+	},
 	descricao: {
 		type: String
 	},
@@ -59,9 +59,15 @@ module.exports.addLocal = function (newLocal, callback){
 // Atualizar local
 module.exports.updateLocal = function (updatedLocal, callback){
 	this.getLocalById(updatedLocal._id, function (err, local) {
-		if (err) throw err;
+		if (err) res.send(err);
 		if (local) {
-			local = updateLocal;
+			local.nome = updatedLocal.nome;
+			local.cordenadas = updatedLocal.cordenadas;
+			local.endereco = updatedLocal.endereco;
+			local.descricao = updatedLocal.descricao;
+			local.icon = updatedLocal.icon;
+			local.horario = updatedLocal.horario;
+			local.categoria = updatedLocal.categoria;
 			local.save(callback);
 		}
 	})
