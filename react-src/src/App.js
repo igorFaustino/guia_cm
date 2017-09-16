@@ -14,6 +14,7 @@ import {
 import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
 
 import Categories from './components/Categories.js';
+import Eventos from './components/Eventos.js';
 
 	var items = [
 		<SidebarItem hoverHighlight='#102372' textAlign='center'><h2><Link to="/">GUIA CM</Link></h2></SidebarItem>,
@@ -32,6 +33,10 @@ class App extends Component {
 						<Container>
 							<Route exact path="/" component={Categories}/>
 							<Route path="/categories" component={Categories}/>
+						</Container>
+						<Container>
+							<Route exact path="/" component={Eventos}/>
+							<Route path="/events" component={Eventos}/>
 						</Container>
 				</Sidebar>
 			</Router>
