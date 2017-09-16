@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.align-center {
+	text-align: center;
+}
+
+.icons {
+	font-size: 70px;
+}
+
+.large-space {
+	margin: 70px;
+}
