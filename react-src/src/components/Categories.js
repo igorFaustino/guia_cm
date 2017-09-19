@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import CategorieItem from './CategorieItem';
+import CategoryItem from './CategoryItem';
 import { Row, Container } from 'reactstrap';
+
+import {
+	BrowserRouter as Router,
+	Route,
+	Link
+} from 'react-router-dom'
 
 class Categories extends Component {
 	constructor(){
@@ -28,12 +34,13 @@ class Categories extends Component {
 			]
 		});
 	}
+	
 	render() {
-		let categorieItens;
+		let categoryItens;
 		if(this.state.categories){
-			categorieItens = this.state.categories.map(categorie => {
+			categoryItens = this.state.categories.map(category => {
 				return (
-					<CategorieItem key={categorie.title} categorie={categorie} />
+					<CategoryItem key={category.title} category={category} />
 				);
 			});
 		}
@@ -42,7 +49,7 @@ class Categories extends Component {
 			<Container className="text-center">
 				<h1 className="large-space">Categorias</h1>
 				<Row>
-					{categorieItens}
+					{categoryItens}
 				</Row>
 			</Container>
 		);
