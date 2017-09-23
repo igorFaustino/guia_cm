@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col, Container, Button } from 'reactstrap';
 import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
+import map from '../img/map.jpg';
 
 import {
 	BrowserRouter as Router,
@@ -12,23 +13,32 @@ import {
 class Local extends Component {
 
 	render() {
-		let link = "/categorias/" + this.props.local.nome.toLowerCase();
+		// let link = "/" + this.props.local.nome.toLowerCase();
 		return (
-			<Col md='4'>
-				<Link to={link} className="link">
-					<figure className="figure">
-						<img src={coffe} alt="..." className="figure-img img-fluid rounded"></img>
-						<figcaption class="figure-caption">
-							<div className="text-center">
-								<h3>{this.props.local.nome}</h3>
-								<p>{this.props.local.descricao}</p>
-								<p>{this.props.local.horario}</p>
-								<p>{this.props.local.endereco}</p>
-							</div>
-						</figcaption>
-					</figure>
-				</Link>
-			</Col>
+			<Container className="text-center">
+				<h1 className="large-space" >LOCAL</h1>
+				<Row>
+					<Col md="6">
+						<img src={coffe} className="figure-img img-fluid rounded"></img>
+					</Col>
+					<Col md="6">
+						<Container className="margin">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							<p>Av blabal bla bla, 124</p>
+							<p>12:00 - 22:00</p>
+							<Button color="primary" size="lg" block disabled>Acessar site</Button>
+						</Container>
+					</Col>
+				</Row>
+				<hr className="large-space" />
+				<h3 className="large-space">Como chegar</h3>
+				<img src={map} className="figure-img img-fluid rounded"></img>
+			</Container>
 		);
 	}
 }

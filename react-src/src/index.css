@@ -9,7 +9,7 @@ body {
 }
 
 .icons {
-	font-size: 70px;
+	font-size: 100px;
 }
 
 .large-space {
@@ -19,4 +19,44 @@ body {
 
 .link {
 	text-decoration: none;
+}
+
+.margin{
+	margin: 20px;
+}
+
+.bg-header{
+	background-color: #102372;
+}
+
+.my-nav-item{
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+.my-nav-brand{
+	font-weight: 900;
+	color: #FFFFFF;
+}
+
+.content{
+	position: relative;
+}
+
+.circle-btn{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	border-radius: 100%;
+	background-color: #102372;
+	font-weight: bolder;
+}
+
+.circle-btn:hover{
+	background-color: #2F4CC9;
+}
+
+.margin-sides{
+	margin-left: 20px;
+	margin-right: 20px;
 }

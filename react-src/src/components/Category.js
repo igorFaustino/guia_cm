@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { InputGroup, Row, Col, Container, Input, InputGroupButton, InputGroupAddon, Button } from 'reactstrap';
 
-import Local from './Local.js';
+import Local from './LocalsItem.js';
 
 class Category extends Component {
 	constructor(){
@@ -71,7 +71,7 @@ class Category extends Component {
 			});
 		}
 		return (
-			<Container>
+			<Container className="content">
 				<h1 className="text-center large-space">{category}</h1>
 				<form>
 					<InputGroup className="large-space">
@@ -82,6 +82,7 @@ class Category extends Component {
 				<Row>
 					{locals}
 				</Row>
+				<Button className="circle-btn btn-lg">+</Button>
 			</Container>
 		);
 	}

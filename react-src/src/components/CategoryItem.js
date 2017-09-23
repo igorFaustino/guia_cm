@@ -10,7 +10,7 @@ import {
 class CategoryItem extends Component {
 
 	render() {
-		let link = "/categorias/" + this.props.category.title.toLowerCase();
+		let link = "/localidades/" + this.props.category.title.toLowerCase();
 		return (
 			<Col md="4">
 				<Link to={link} className="link">
