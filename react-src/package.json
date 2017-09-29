@@ -8,6 +8,7 @@
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
     "react-dom": "^15.6.1",
+    "react-modal": "^2.3.2",
     "react-responsive-sidebar": "^0.1.16",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",

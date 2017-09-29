@@ -17,9 +17,9 @@ import Eventos from './components/Eventos.js';
 import Local from './components/Local.js';
 
 	var items = [
-	<Link to="/categorias">Categorias</Link>,
-	<Link to="/eventos">Eventos</Link>,
-	<Link to="/classificados">Classificados</Link>
+		<Link to="/categorias">Categorias</Link>,
+		<Link to="/eventos">Eventos</Link>,
+		<Link to="/classificados">Classificados</Link>
 	];
 
 
@@ -48,7 +48,7 @@ class App extends Component {
 				<div>
 					<header>
 						<nav className="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
-							<Container>
+
 								<Link to="/" className="navbar-brand"><span className="my-nav-brand">GUIA CM</span></Link>
 								<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 									<span className="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@ class App extends Component {
 										</li>
 									</ul>
 								</div>
-							</Container>
+								
 						</nav>
 						<Jumbotron className="bg-header" fluid>
 						</Jumbotron>
