@@ -55,25 +55,20 @@ class FormService extends Component {
 	}
 
 	render(){
-		var validationTitulo = classNames({
-			'is-valid': this.titulo && this.titulo != undefined,
-			'is-invalid': !this.titulo && this.titulo != undefined,
+		var validationNome = classNames({
+			'is-valid': this.nome && this.nome != undefined,
+			'is-invalid': !this.nome && this.nome != undefined,
 		});
 
-		var validationData = classNames({
+		var validationInfo = classNames({
 			'form-control': true,
-			'is-valid': this.data && this.data != undefined,
-			'is-invalid': !this.data && this.data != undefined,
+			'is-valid': this.info && this.info != undefined,
+			'is-invalid': !this.info && this.info != undefined,
 		});
 
-		var validationLocal = classNames({
-			'is-valid': this.local && this.local != undefined,
-			'is-invalid': !this.local && this.local != undefined,
-		});
-
-		var validationLink = classNames({
-			'is-valid': this.link && this.link != undefined,
-			'is-invalid': !this.link && this.link != undefined,
+		var validationTel = classNames({
+			'is-valid': this.tel && this.tel != undefined,
+			'is-invalid': !this.tel && this.tel != undefined,
 		});
 
 		return(

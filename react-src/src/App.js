@@ -15,10 +15,13 @@ import Categories from './components/Categories.js';
 import Category from './components/Category.js';
 import Eventos from './components/Eventos.js';
 import Local from './components/Local.js';
+import Servicos from './components/Servicos.js';
+import Lista from './components/Lista.js';
 
 	var items = [
 		<Link to="/categorias">Categorias</Link>,
 		<Link to="/eventos">Eventos</Link>,
+		<Link to="/servicos">Eventos</Link>,
 		<Link to="/classificados">Classificados</Link>
 	];
 
@@ -64,7 +67,7 @@ class App extends Component {
 											<Link to="/eventos" className="nav-link"><span className="my-nav-item">Eventos</span><span className="sr-only">(current)</span></Link>
 										</li>
 										<li className="nav-item my-nav-item">
-											<Link to="/eventos" className="nav-link"><span className="my-nav-item">Serviços</span><span className="sr-only">(current)</span></Link>
+											<Link to="/servicos" className="nav-link"><span className="my-nav-item">Serviços</span><span className="sr-only">(current)</span></Link>
 										</li>
 									</ul>
 								</div>
@@ -77,7 +80,10 @@ class App extends Component {
 						<Route exact path="/" component={Inicio}/>
 						<Route exact path="/localidades" component={Categories}/>
 						<Route exact path="/localidades/:categoria" component={Category}/>
+						<Route exact path="/servicos" component={Servicos}/>
+						<Route exact path="/servicos/:servico" component={Lista}/>
 						<Route path="/eventos" component={Eventos}/>
+						
 						<Route path="/local/:nome" component={Local}/>
 					</Container>
 				</div>
