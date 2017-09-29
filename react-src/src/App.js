@@ -10,7 +10,7 @@ import {
 	Link
 } from 'react-router-dom'
 
-
+import Inicio from './components/Inicio.js';
 import Categories from './components/Categories.js';
 import Category from './components/Category.js';
 import Eventos from './components/Eventos.js';
@@ -74,7 +74,7 @@ class App extends Component {
 						</Jumbotron>
 					</header>
 					<Container>
-						<Route exact path="/" component={Categories}/>
+						<Route exact path="/" component={Inicio}/>
 						<Route exact path="/localidades" component={Categories}/>
 						<Route exact path="/localidades/:categoria" component={Category}/>
 						<Route path="/eventos" component={Eventos}/>
