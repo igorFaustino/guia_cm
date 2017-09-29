@@ -17,6 +17,11 @@ body {
 	margin-bottom: 70px;
 }
 
+.small-space {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .link {
 	text-decoration: none;
 }
