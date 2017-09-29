@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { InputGroup, Row, Col, Container, Input, InputGroupButton, InputGroupAddon, Button } from 'reactstrap';
+import { InputGroup, Row, Col, Container, Input, InputGroupButton, InputGroupAddon, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Local from './LocalsItem.js';
+import FormLocals from './FormLocals.js';
 
 class Category extends Component {
 	constructor(){
 		super();
 		this.state = {
-			locals: []
+			locals: [],
+			modal: false
 		}
+		this.toggle = this.toggle.bind(this);
 	}
 
 	componentWillMount(){
@@ -60,6 +63,12 @@ class Category extends Component {
 		});
 	}
 
+	toggle() {
+		this.setState({
+			modal: !this.state.modal
+		});
+	}
+
 	render() {
 		let category = categoryTitle(this.props);
 		let locals;
@@ -82,7 +91,14 @@ class Category extends Component {
 				<Row>
 					{locals}
 				</Row>
-				<Button className="circle-btn btn-lg">+</Button>
+				<Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>
+
+				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
+					<ModalHeader toggle={this.toggle}>Adicionar Local</ModalHeader>
+					<ModalBody>
+						<FormLocals />
+					</ModalBody>
+				</Modal>
 			</Container>
 		);
 	}

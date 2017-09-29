@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col, Container, Button } from 'reactstrap';
 import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
 
@@ -21,9 +21,9 @@ class LocalsItem extends Component {
 						<figcaption className="figure-caption">
 							<div className="text-center">
 								<h3>{this.props.local.nome}</h3>
-								<p>{this.props.local.descricao}</p>
 								<p>{this.props.local.horario}</p>
 								<p>{this.props.local.endereco}</p>
+								<Button color="danger">Deletar</Button>
 							</div>
 						</figcaption>
 					</figure>

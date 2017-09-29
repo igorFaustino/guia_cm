@@ -10,7 +10,7 @@ class Eventos extends Component {
 			eventos: [],
 			modal: false
 		}
-			this.toggle = this.toggle.bind(this);
+		this.toggle = this.toggle.bind(this);
 	}
 
 	componentWillMount(){
