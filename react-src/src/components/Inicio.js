@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategoryItem from './CategoryItem';
-import { Row, Container } from 'reactstrap';
+import Carrossel from './Carrossel';
+import { Row, Col, Container, Button } from 'reactstrap';
 
 import {
 	BrowserRouter as Router,
@@ -17,9 +18,22 @@ class Inicio extends Component {
 
 		
 	render() {
-		return(<div>
-			<h1>INICIO</h1>
-		</div>);
+		return(
+			<Container>
+			<Row>
+				<Col md="6">
+					<Carrossel>
+					</Carrossel>
+				</Col>
+				<Col md="6">
+					<h1>LOCAL</h1>
+				Amet aliqua pariatur voluptate laboris anim officia sit in reprehenderit veniam aute cupidatat sunt ut consectetur reprehenderit laborum in ullamco eu nostrud fugiat excepteur deserunt dolor deserunt
+				</Col>
+			</Row>
+
+			</Container>
+			);
+
 		
 	}
 }
