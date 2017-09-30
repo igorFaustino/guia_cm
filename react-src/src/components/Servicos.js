@@ -40,7 +40,7 @@ componentWillMount(){
 					
 				},
 				{
-					title: 'siodjfosajio',
+					title: 'Pizzarias',
 					
 				}
 			]

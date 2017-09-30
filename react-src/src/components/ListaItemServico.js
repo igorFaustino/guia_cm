@@ -14,12 +14,13 @@ class ServicoItem extends Component {
 				<Container>
 					<Row>
 						<Col md="6">
-							<Container>
+							<Container className="text-center">
 									<h3>{this.props.servico.nome}</h3>
-									<h3>{this.props.servico.telefone}</h3>
-									<h3>{this.props.servico.descricao}</h3>
-								
+									<h3>{this.props.servico.telefone}</h3>						
 							</Container>
+						</Col>
+						<Col md="6">
+							<h3>{this.props.servico.descricao}</h3>
 						</Col>
 					</Row>
 					<hr/>

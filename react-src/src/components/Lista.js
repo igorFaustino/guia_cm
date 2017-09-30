@@ -17,25 +17,24 @@ class Servico extends Component {
     this.setState(
       {servico:[
         {
-          nome: '8948948a',
-          telefone: 'asfdsafsa',
-          descricao: 'ofdiijoidjogid'
-          
+          nome: 'WhatEver',
+          telefone: '444-5555',
+          descricao: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.'
         },
         {
-          nome: 'sdddfdoaijfiosajiofsa',
-          telefone: 'asfdsafsa',
-          descricao: 'ofdiijoidjogid'  
+          nome: 'Nobody is Door',
+          telefone: '665-4852',
+          descricao: 'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas'  
         },
         {
-          nome: 'sdd456489ajiofsa',
-          telefone: 'asfdsafsa',
-          descricao: 'ofdiijoidjogid'
+          nome: 'Ramdom',
+          telefone: '154-8452',
+          descricao: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
         },
         {
-          nome: 's84949jiofsa',
-          telefone: 'asfdsafsa',
-          descricao: 'ofdiijoidjogid'
+          nome: 'Foda-se',
+          telefone: '541-5925',
+          descricao: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem'
         }
 
       ]

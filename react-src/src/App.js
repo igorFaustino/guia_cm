@@ -83,7 +83,6 @@ class App extends Component {
 						<Route exact path="/servicos" component={Servicos}/>
 						<Route exact path="/servicos/:servico" component={Lista}/>
 						<Route path="/eventos" component={Eventos}/>
-						
 						<Route path="/local/:nome" component={Local}/>
 					</Container>
 				</div>
