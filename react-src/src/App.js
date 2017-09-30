@@ -73,7 +73,7 @@ class App extends Component {
 								</div>
 								
 						</nav>
-						<Jumbotron className="bg-header" fluid>
+						<Jumbotron className="bg-header top-space" fluid>
 						</Jumbotron>
 					</header>
 					<Container>

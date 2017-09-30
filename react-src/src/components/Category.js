@@ -8,10 +8,15 @@ class Category extends Component {
 	constructor(){
 		super();
 		this.state = {
+			allLocals: [],
+			filterLocals: [],
 			locals: [],
-			modal: false
+			modal: false,
+			value: ""
 		}
 		this.toggle = this.toggle.bind(this);
+		this.search = this.search.bind(this);
+		this.handleValueChange = this.handleValueChange.bind(this);
 	}
 
 	componentWillMount(){
@@ -63,6 +68,31 @@ class Category extends Component {
 		});
 	}
 
+	handleValueChange(e){
+		var allLocals = this.state.allLocals;
+		this.setState({value: e.target.value});
+	}
+
+	search(e) {
+		e.preventDefault();
+		var value = this.state.value
+		if(this.state.locals){
+			var locals = this.state.locals.map(local => {
+				return local;
+			});
+			locals = locals.filter(local => {
+				if (local.nome.toUpperCase().indexOf(value.toUpperCase()) > -1) {
+					console.log(local);
+					return local;
+				}
+			});
+			this.setState({
+				filterLocals: locals
+			})
+		}
+		return 0;
+	}
+
 	toggle() {
 		this.setState({
 			modal: !this.state.modal
@@ -72,21 +102,28 @@ class Category extends Component {
 	render() {
 		let category = categoryTitle(this.props);
 		let locals;
-		if(this.state.locals){
-			locals = this.state.locals.map(local => {
+		// let filterLocals;
+		if(this.state.filterLocals.length > 0){
+			locals = this.state.filterLocals.map(local => {
 				return (
 					<Local key={local.nome} local={local} />
 				);
 			});
+		} else {
+			locals = this.state.locals.map(local => {
+				return (
+					<Local key={local.nome} local={local} />
+				);
+			});	
 		}
 		return (
 			<Container className="content">
 				<h1 className="text-center large-space">{category}</h1>
-				<form>
-					<InputGroup className="large-space">
-						<Input placeholder="Pesquisar.."></Input>
-						<InputGroupButton color="primary">ir</InputGroupButton>
-					</InputGroup>
+				<form className="input-group large-space">
+					<input type="text" className="form-control" placeholder="Buscar..." value={this.state.value} onChange={this.handleValueChange} />
+					<span className="input-group-btn">
+						<input className="btn btn-primary" onClick={this.search} value="ir!" type="submit" />
+					</span>
 				</form>
 				<Row>
 					{locals}

@@ -5,7 +5,8 @@ body {
 }
 
 .align-center {
-	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .icons {
@@ -64,4 +65,20 @@ body {
 .margin-sides{
 	margin-left: 20px;
 	margin-right: 20px;
+}
+
+.map{
+	min-width: 10px;
+	max-height: 500px;
+	max-width: 1000px;
+}
+
+html, body, {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+.map-space{
+	margin-bottom: 600px;
 }

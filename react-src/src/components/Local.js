@@ -48,16 +48,15 @@ class Local extends Component {
 						</Container>
 					</Col>
 				</Row>
-				<div>
+				<div className="map-space">
 					<hr className="large-space" />
 					<h3 className="large-space">Como chegar</h3>
+					<Container className="align-center large-space map">
+						<Mapa/>
+					</Container>
 				</div>
-					<div>
-						<Mapa>
-						</Mapa>
-					</div>
+				<hr/>
 				<Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>
-
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Editar Local</ModalHeader>
 					<ModalBody>

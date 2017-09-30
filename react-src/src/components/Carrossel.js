@@ -1,15 +1,18 @@
+import React, {Component} from 'react';
+import Carousel from 'nuka-carousel';
 import coffe from '../img/cafeteria.jpg';
-var React = require('react');
-var Carousel = require('nuka-carousel');
 
 class Carrossel extends React.Component {
   render(){
     var settings = {
-      dots: true,
+      autoplay: true,
+      autoplayInterval: 10000,
+      cellSpacing: 20,
+      wrapAround: true,
     };
     return (
-      <Carousel>
-        <img src={coffe}/>
+      <Carousel {...settings}>
+        <img src={require('../img/cafeteria.jpg')}/>
         <img src={coffe}/>
         <img src={coffe}/>
         <img src={coffe}/>

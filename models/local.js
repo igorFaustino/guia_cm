@@ -1,8 +1,3 @@
-///////////////////////////////////////////////////////////
-// FUNÇÕES AINDA NÃO TESTADAS -> ELAS SERÃO TESTADAS QUANDO FOR CRIADA AS ROTA 'LOCALS'
-// Ass. Igor
-//////////////////////////////////////////////////////////
-
 var mongoose = require('mongoose');
 
 // esquema de dados dos locais

@@ -113,7 +113,7 @@ class FormLocals extends Component {
 					<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />
 				</InputGroup>
 				<div className="text-center">
-					<input className="btn btn-lg btn-success" type="submit" value="Submit" disabled={!this.nome || !this.desc || !this.local || !this.horario}/>
+					<input className="btn btn-lg btn-success" type="submit" value="Submit" disabled={(!this.nome || !this.desc || !this.local || !this.horario) && !this.state.edit}/>
 				</div>
 			</form>
 		);
