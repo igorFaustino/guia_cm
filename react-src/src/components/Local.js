@@ -3,8 +3,10 @@ import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody, ModalFooter
 import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
 import map from '../img/map.jpg';
+import Mapa from './Mapa.js'
 
 import FormLocals from './FormLocals.js';
+
 
 class Local extends Component {
 	constructor(){
@@ -18,6 +20,7 @@ class Local extends Component {
 				horario: '12:00 - 22:00',
 			}
 		}
+
 		this.toggle = this.toggle.bind(this);
 	}
 
@@ -48,8 +51,11 @@ class Local extends Component {
 				<div>
 					<hr className="large-space" />
 					<h3 className="large-space">Como chegar</h3>
-					<img src={map} className="figure-img img-fluid rounded"></img>
 				</div>
+					<div>
+						<Mapa>
+						</Mapa>
+					</div>
 				<Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>
 
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
