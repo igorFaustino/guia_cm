@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Container, Button , InputGroup, Input} from 'reactstrap';
+import { Button , InputGroup, Input} from 'reactstrap';
 var classNames = require('classnames');
 
 class FormEvents extends Component {
@@ -28,7 +28,7 @@ class FormEvents extends Component {
 
 	handleTituloChange(e){
 		this.setState({titulo: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.titulo = false;
 		} else {
 			this.titulo = true;
@@ -37,7 +37,7 @@ class FormEvents extends Component {
 
 	handleDataChange(e){
 		this.setState({data: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.data = false;
 		} else {
 			this.data = true;
@@ -46,7 +46,7 @@ class FormEvents extends Component {
 
 	handleLocalChange(e){
 		this.setState({local: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.local = false;
 		} else {
 			this.local = true;
@@ -55,7 +55,7 @@ class FormEvents extends Component {
 
 	handleLinkChange(e){
 		this.setState({link: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.link = false;
 		} else {
 			this.link = true;
@@ -68,24 +68,24 @@ class FormEvents extends Component {
 
 	render(){
 		var validationTitulo = classNames({
-			'is-valid': this.titulo && this.titulo != undefined,
-			'is-invalid': !this.titulo && this.titulo != undefined,
+			'is-valid': this.titulo && this.titulo !== undefined,
+			'is-invalid': !this.titulo && this.titulo !== undefined,
 		});
 
 		var validationData = classNames({
 			'form-control': true,
-			'is-valid': this.data && this.data != undefined,
-			'is-invalid': !this.data && this.data != undefined,
+			'is-valid': this.data && this.data !== undefined,
+			'is-invalid': !this.data && this.data !== undefined,
 		});
 
 		var validationLocal = classNames({
-			'is-valid': this.local && this.local != undefined,
-			'is-invalid': !this.local && this.local != undefined,
+			'is-valid': this.local && this.local !== undefined,
+			'is-invalid': !this.local && this.local !== undefined,
 		});
 
 		var validationLink = classNames({
-			'is-valid': this.link && this.link != undefined,
-			'is-invalid': !this.link && this.link != undefined,
+			'is-valid': this.link && this.link !== undefined,
+			'is-invalid': !this.link && this.link !== undefined,
 		});
 
 		return(

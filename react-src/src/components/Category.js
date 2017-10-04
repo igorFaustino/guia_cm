@@ -8,7 +8,6 @@ class Category extends Component {
 	constructor(){
 		super();
 		this.state = {
-			allLocals: [],
 			filterLocals: [],
 			locals: [],
 			modal: false,
@@ -17,6 +16,8 @@ class Category extends Component {
 		this.toggle = this.toggle.bind(this);
 		this.search = this.search.bind(this);
 		this.handleValueChange = this.handleValueChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	componentWillMount(){
@@ -69,26 +70,53 @@ class Category extends Component {
 	}
 
 	handleValueChange(e){
-		var allLocals = this.state.allLocals;
 		this.setState({value: e.target.value});
 	}
 
+	handleSubmit(local){
+		this.setState({
+			locals: this.state.locals.concat(local),
+			filterLocals: []
+		});
+		this.toggle();
+	}
+
+	handleDelete(deletedLocal){
+		let locals = this.state.locals;
+		locals = locals.filter((local)=>{
+			if(local.nome !== deletedLocal.nome){
+				return true;
+			}
+		});
+		this.setState({
+			locals: locals,
+			filterLocals: []
+		});
+	}
+
 	search(e) {
-		e.preventDefault();
-		var value = this.state.value
+		e.preventDefault()
+		let value = this.state.value
 		if(this.state.locals){
-			var locals = this.state.locals.map(local => {
+			let locals = this.state.locals.map(local => {
 				return local;
 			});
 			locals = locals.filter(local => {
 				if (local.nome.toUpperCase().indexOf(value.toUpperCase()) > -1) {
-					console.log(local);
 					return local;
 				}
 			});
-			this.setState({
-				filterLocals: locals
-			})
+			if(locals.length > 0){
+				this.setState({
+					filterLocals: locals,
+					value: ''
+				})
+			} else {
+				this.setState({
+					value: ''
+				})
+				alert('Lugar não encontrado');
+			}
 		}
 		return 0;
 	}
@@ -112,7 +140,7 @@ class Category extends Component {
 		} else {
 			locals = this.state.locals.map(local => {
 				return (
-					<Local key={local.nome} local={local} />
+					<Local key={local.nome} local={local} delete={this.handleDelete}/>
 				);
 			});	
 		}
@@ -133,7 +161,7 @@ class Category extends Component {
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Adicionar Local</ModalHeader>
 					<ModalBody>
-						<FormLocals />
+						<FormLocals handleSubmit={this.handleSubmit} />
 					</ModalBody>
 				</Modal>
 			</Container>

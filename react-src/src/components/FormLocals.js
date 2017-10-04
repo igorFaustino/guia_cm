@@ -17,10 +17,10 @@ class FormLocals extends Component {
 		var desc;
 		var local;
 		var horario;
-		this.handleNomeChange = this.handleNomeChange.bind(this)
-		this.handleDescChange = this.handleDescChange.bind(this)
-		this.handleLocalChange = this.handleLocalChange.bind(this)
-		this.handleHorarioChange = this.handleHorarioChange.bind(this)
+		this.handleNomeChange = this.handleNomeChange.bind(this);
+		this.handleDescChange = this.handleDescChange.bind(this);
+		this.handleLocalChange = this.handleLocalChange.bind(this);
+		this.handleHorarioChange = this.handleHorarioChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -73,7 +73,14 @@ class FormLocals extends Component {
 	}
 
 	handleSubmit(e){
-
+		e.preventDefault();
+		var local = {
+			nome: this.state.nome,
+			desc: this.state.desc,
+			local: this.state.local,
+			horario: this.state.horario
+		}
+		this.props.handleSubmit(local);
 	}
 
 	render(){
@@ -99,7 +106,7 @@ class FormLocals extends Component {
 		});
 
 		return(
-			<form onSubmit={this.handleSubmit}>
+			<form >
 				<InputGroup className={"small-space"}>
 					<Input placeholder="Nome do Local" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text"/>
 				</InputGroup>
@@ -113,7 +120,7 @@ class FormLocals extends Component {
 					<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />
 				</InputGroup>
 				<div className="text-center">
-					<input className="btn btn-lg btn-success" type="submit" value="Submit" disabled={(!this.nome || !this.desc || !this.local || !this.horario) && !this.state.edit}/>
+					<input className="btn btn-lg btn-success" type="submit" value="Submit" onClick={this.handleSubmit} disabled={(!this.nome || !this.desc || !this.local || !this.horario) && !this.state.edit}/>
 				</div>
 			</form>
 		);

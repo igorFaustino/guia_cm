@@ -10,24 +10,37 @@ import {
 } from 'react-router-dom'
 
 class LocalsItem extends Component {
+	constructor(){
+		super();
+
+		this.handleDelete = this.handleDelete.bind(this);
+	}
+
+	handleDelete(e){
+		e.preventDefault();
+		console.log(this.props.local);
+		this.props.delete(this.props.local)
+	}
 
 	render() {
 		let link = "/local/" + this.props.local.nome.toLowerCase();
 		return (
 			<Col xs="12" sm="6" md="4">
-				<Link to={link} className="link">
-					<figure className="figure">
+				<figure className="figure">
+					<Link to={link} className="link">
 						<img src={coffe} alt="..." className="figure-img img-fluid rounded"></img>
-						<figcaption className="figure-caption">
+					</Link>
+					<figcaption className="figure-caption">
+						<Link to={link} className="link">
 							<div className="text-center">
 								<h3>{this.props.local.nome}</h3>
 								<p>{this.props.local.horario}</p>
 								<p>{this.props.local.endereco}</p>
-								<Button color="danger">Deletar</Button>
 							</div>
-						</figcaption>
-					</figure>
-				</Link>
+						</Link>
+						<Button color="danger" className="align-center" onClick={this.handleDelete} >Deletar</Button>
+					</figcaption>
+				</figure>
 			</Col>
 		);
 	}
