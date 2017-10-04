@@ -18,7 +18,6 @@ class LocalsItem extends Component {
 
 	handleDelete(e){
 		e.preventDefault();
-		console.log(this.props.local);
 		this.props.delete(this.props.local)
 	}
 

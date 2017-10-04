@@ -1,6 +1,7 @@
 var express = require('express'); // require express -> web framework
 var path = require('path'); // require path -> simplificar paths
 var bodyParser = require('body-parser'); // require body-parser -> pegar informações de POSTS
+var cors = require('cors') // require cors
 var mongoose = require('mongoose'); // require mongoose -> banco de dados
 const config = require('./config/database.js'); // database config
 
@@ -22,6 +23,8 @@ var app = express();
 var maps = require('./routes/maps');
 var locals = require('./routes/locals');
 
+// set CORS MW
+app.use(cors());
 
 // set port
 var port = 5000;

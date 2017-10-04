@@ -76,8 +76,8 @@ class FormLocals extends Component {
 		e.preventDefault();
 		var local = {
 			nome: this.state.nome,
-			desc: this.state.desc,
-			local: this.state.local,
+			descricao: this.state.desc,
+			endereco: this.state.local,
 			horario: this.state.horario
 		}
 		this.props.handleSubmit(local);

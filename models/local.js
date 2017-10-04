@@ -8,11 +8,11 @@ var LocalSchema = mongoose.Schema({
 	cordenadas: [{
 		lat: {
 			type: Number,
-			require: true
+			// require: true
 		},
 		lng: {
 			type: Number,
-			require: true
+			// require: true
 		}
 	}],
 	endereco: {
@@ -28,8 +28,7 @@ var LocalSchema = mongoose.Schema({
 		type: String
 	},
 	categoria: {
-		type: String,
-		require: true
+		type: String
 	}
 });
 

@@ -18,56 +18,74 @@ class Category extends Component {
 		this.handleValueChange = this.handleValueChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
+
+		this.getLocalsFromDatabase = this.getLocalsFromDatabase.bind(this);
+		this.saveOnDatabase = this.saveOnDatabase.bind(this);
 	}
 
 	componentWillMount(){
-		this.setState({
-			locals: [
-				{
-					nome: 'Lugar',
-					endereco: 'End',
-					descricao: 'blabla',
-					horario: '12:00-23:00',
-					categoria: this.props.match.params.categoria
-				},
-				{
-					nome: 'Lugar2',
-					endereco: 'End2',
-					descricao: 'blabla',
-					horario: '12:00-23:00',
-					categoria: this.props.match.params.categoria
-				},
-				{
-					nome: 'Lugar3',
-					endereco: 'End2',
-					descricao: 'blabla',
-					horario: '12:00-23:00',
-					categoria: this.props.match.params.categoria
-				},
-				{
-					nome: 'Lugar4',
-					endereco: 'End',
-					descricao: 'blabla',
-					horario: '12:00-23:00',
-					categoria: this.props.match.params.categoria
-				},
-				{
-					nome: 'Lugar5',
-					endereco: 'End2',
-					descricao: 'blabla',
-					horario: '12:00-23:00',
-					categoria: this.props.match.params.categoria
-				},
-				{
-					nome: 'Lugar6',
-					endereco: 'End2',
-					descricao: 'blabla',
-					horario: '12:00-23:00',
-					categoria: this.props.match.params.categoria
-				}
-			]
+		this.getLocalsFromDatabase();
+	}
+
+	getLocalsFromDatabase(){
+		fetch('http://localhost:5000/api/locals', {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*'
+			}
+		}).then((response) => response.json()).then((json) => {
+			this.setState({
+				locals: json
+			});
 		});
 	}
+
+	saveOnDatabase(local){
+		fetch('http://localhost:5000/api/local', {
+			method: 'POST',
+			// mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*'
+			},
+			body: JSON.stringify({
+				'nome': local.nome,
+				'descricao': local.desc,
+				'endereco': local.local,
+				'horario': local.horario
+			})
+		}).then((response) => response.json()).then((json) => {
+			console.log(json);
+			if(json.success){
+				alert("show");
+			} else {
+				alert("droga");
+			}
+		});
+	}
+
+	deleteFromDatabase(local){
+		fetch('http://localhost:5000/api/local/' + local._id, {
+			method: 'DELETE',
+			// mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*'
+			},
+		}).then((response) => response.json()).then((json) => {
+			console.log(json);
+			if(json.success){
+				alert("show");
+			} else {
+				alert("droga");
+			}
+		});
+	}
+
 
 	handleValueChange(e){
 		this.setState({value: e.target.value});
@@ -78,13 +96,14 @@ class Category extends Component {
 			locals: this.state.locals.concat(local),
 			filterLocals: []
 		});
+		this.saveOnDatabase(local);
 		this.toggle();
 	}
 
 	handleDelete(deletedLocal){
 		let locals = this.state.locals;
 		locals = locals.filter((local)=>{
-			if(local.nome !== deletedLocal.nome){
+			if(local._id !== deletedLocal._id){
 				return true;
 			}
 		});
@@ -92,6 +111,7 @@ class Category extends Component {
 			locals: locals,
 			filterLocals: []
 		});
+		this.deleteFromDatabase(deletedLocal);
 	}
 
 	search(e) {
@@ -140,7 +160,7 @@ class Category extends Component {
 		} else {
 			locals = this.state.locals.map(local => {
 				return (
-					<Local key={local.nome} local={local} delete={this.handleDelete}/>
+					<Local key={local._id} local={local} delete={this.handleDelete}/>
 				);
 			});	
 		}

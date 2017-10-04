@@ -23,6 +23,34 @@ class Local extends Component {
 
 		this.toggle = this.toggle.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.saveOnDatabase = this.saveOnDatabase.bind(this);
+	}
+
+	getLocalsFromDatabase(){
+
+	}
+
+	saveOnDatabase(){
+		let local = {
+			nome: this.state.local.nome,
+			descricao: this.state.local.desc,
+			endereco: this.state.local.local,
+			horario: this.state.local.horario
+		}
+		fetch('https://localhost:5000/local/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(local)
+		}).then((response) => {
+			if(response.success){
+				alert("show");
+			} else {
+				alert("droga");
+			}
+		});
 	}
 
 	toggle() {
@@ -36,6 +64,7 @@ class Local extends Component {
 			local: local
 		});
 		this.toggle();
+		// this.saveOnDatabase();
 	}
 
 	render() {

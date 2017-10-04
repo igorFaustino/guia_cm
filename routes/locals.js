@@ -24,6 +24,7 @@ router.get('/local/:id', function (req, res) {
 
 // Cadastrar um novo local.
 router.post('/local', function (req, res) {
+	console.log(req.body);
 	let newLocal = new Local(req.body);
 
 	Local.addLocal(newLocal, function (err, local) {
@@ -38,7 +39,6 @@ router.post('/local', function (req, res) {
 // Alterar dados do local
 router.put('/local', function (req, res) {
 	var updatedLocal = req.body;
-	console.log(req.body);
 	
 	Local.updateLocal(updatedLocal, function (err, task) {
 		if (err) {
