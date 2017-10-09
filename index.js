@@ -22,6 +22,7 @@ var app = express();
 // rotas!
 var maps = require('./routes/maps');
 var locals = require('./routes/locals');
+var events = require('./routes/events');
 
 // set CORS MW
 app.use(cors());
@@ -38,6 +39,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/api/maps', maps);
 app.use('/api', locals);
+app.use('/api', events);
 
 
 // default route

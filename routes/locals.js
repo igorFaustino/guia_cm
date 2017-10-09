@@ -23,8 +23,7 @@ router.get('/local/:id', function (req, res) {
 });
 
 // Cadastrar um novo local.
-router.post('/local', function (req, res) {
-	console.log(req.body);
+router.post('/local', function (req, res) {;
 	let newLocal = new Local(req.body);
 
 	Local.addLocal(newLocal, function (err, local) {
