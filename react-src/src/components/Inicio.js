@@ -28,6 +28,26 @@ class Inicio extends Component {
 					icon: 'ion-pizza'
 				},
 				{
+					title: 'Imobiliária',
+					icon: 'ion-ios-home'
+				},
+				{
+					title: 'Sebo',
+					icon: 'ion-ios-bookmarks'
+				},
+				{
+					title: 'Hospitais e Farmácias',
+					icon: 'ion-medkit'
+				},
+				{
+					title: 'Banco',
+					icon: 'ion-cash'
+				},
+				{
+					title: 'Moveis Usados',
+					icon: 'ion-ios-pricetags'
+				},
+				{
 					title: 'Mercados baratos',
 					icon: 'ion-ios-cart'
 				}

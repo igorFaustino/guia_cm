@@ -20,27 +20,33 @@ componentWillMount(){
 		this.setState(
 			{servicos: [
 				{
-					title: 'Lugares Baratos',
+					title: 'Taxi',
+					icon: 'ion-android-bus'
 					
 				},
 				{
-					title: 'Farmacias 24 Horas',
+					title: 'Diarísta',
+					icon: 'ion-android-walk'
 					
 				},
 				{
-					title: 'Imobiliaria',
+					title: 'Mudança de Móveis',
+					icon: 'ion-android-archive'
 					
 				},
 				{
-					title: 'Comida de Madrugada ',
+					title: 'Delivery',
+					icon: 'ion-android-restaurant'
 					
 				},
 				{
-					title: 'Mercados',
+					title: 'Encanador',
+					icon: 'ion-wrench'
 					
 				},
 				{
-					title: 'Pizzarias',
+					title: 'Detetização',
+					icon: 'ion-bug'
 					
 				}
 			]
