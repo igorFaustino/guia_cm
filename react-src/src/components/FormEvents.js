@@ -63,7 +63,14 @@ class FormEvents extends Component {
 	}
 
 	handleSubmit(e){
-
+		e.preventDefault();
+		var evento = {
+			titulo: this.state.titulo,
+			data: this.state.data,
+			local: this.state.local,
+			link: this.state.link
+		}
+		this.props.handleSubmit(evento);
 	}
 
 	render(){
@@ -91,19 +98,24 @@ class FormEvents extends Component {
 		return(
 			<form>
 				<InputGroup className="small-space">
-					<Input placeholder="Titulo do Evento" value={this.state.titulo} onChange={this.handleTituloChange} className={validationTitulo}/>
+					<Input placeholder="Titulo do Evento" value={this.state.titulo} onChange={this.handleTituloChange}
+					className={validationTitulo}/>
 				</InputGroup>
 				<InputGroup className="small-space">
-					<Input placeholder="Data do evento" value={this.state.data} onChange={this.handleDataChange} className={validationData}/>
+					<Input placeholder="Data do evento" value={this.state.data} onChange={this.handleDataChange} 
+					className={validationData}/>
 				</InputGroup>
 				<InputGroup className="small-space">
-					<Input placeholder="Local do Evento" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal}/>
+					<Input placeholder="Local do Evento" value={this.state.local} onChange={this.handleLocalChange} 
+					className={validationLocal}/>
 				</InputGroup>
 				<InputGroup className="small-space">
-					<Input placeholder="Link do Evento" value={this.state.link} onChange={this.handleLinkChange} className={validationLink}/>
+					<Input placeholder="Link do Evento" value={this.state.link} onChange={this.handleLinkChange} 
+					className={validationLink}/>
 				</InputGroup>
 				<div className="text-center">
-					<Button color="success" disabled={!this.titulo || !this.data || !this.local || !this.hora || !this.link} >Adicionar</Button>
+					<input className="btn btn-lg btn-success" type="submit" value="Submit" onClick={this.handleSubmit} 
+					disabled={!this.titulo || !this.data || !this.local || !this.link} />
 				</div>
 			</form>
 		);

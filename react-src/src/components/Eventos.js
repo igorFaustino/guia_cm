@@ -7,42 +7,102 @@ class Eventos extends Component {
 	constructor(){
 		super();
 		this.state = {
+			filterEventos: [],
 			eventos: [],
-			modal: false
+			modal: false,
+			value: ""
 		}
 		this.toggle = this.toggle.bind(this);
+		this.handleValueChange = this.handleValueChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	componentWillMount(){
-		this.setState(
-			{eventos:[
-				{
-					title: 'Abracos gratis',
-					local: 'Praça da Igreja Matriz',
-					data:  '15/04/2017',  
-					image: '../../public/fonts/hugs.jpeg'
-				},
-				{
-					title: 'Palestra Suicidio do SO',
-					local: 'Anfiteatro UTFPR',
-					data:  '15/04/2017',  
-					image: '../../public/fonts/win.jpg'
-				},
-				{
-					title: 'Feira do Escambo',
-					local: 'Em frente a Rodoviária',
-					data:  '08/10/2017',  
-					image: '../../public/fonts/feira.jpg'
-				},
-				{
-					title: 'Exposicao de Aranhas',
-					local: 'No hipermercado Big',
-					data:  '13/12/2017',  
-					image: '../../public/fonts/aragogh.jpeg'
-				}
+		this.getEventsFromDatabase();
+	}
 
-			]
+	getEventsFromDatabase(){
+		fetch('http://localhost:5000/api/events', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then((response) => response.json()).then((json) => {
+			this.setState({
+				eventos: json
+			});
 		});
+	}
+
+	saveOnDatabase(evento){
+		fetch('http://localhost:5000/api/event', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				'titulo' : evento.titulo,
+				'local' : evento.local,
+				'data' : evento.data,
+				'link' : evento.link
+			})
+		}).then((response) => response.json()).then((json) => {
+			console.log(json);
+			if(json.success){
+				alert("daora");
+			}
+			else{
+				alert("deu ruim");
+			}
+		});
+	}
+
+	deleteFromDatabase(evento){
+		fetch('http://localhost:5000/api/event/' + evento._id, {
+			method: 'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*'
+			}
+		}).then((response) => response.json()).then((json) => {
+			console.log(json);
+			if(json.success){
+				alert("daora");
+			}
+			else{
+				alert("deu ruim");
+			}
+		});
+	}
+
+	handleValueChange(e){
+		this.setState({value: e.target.value});
+	}
+
+	handleSubmit(evento){
+		this.setState({
+			eventos: this.state.eventos.concat(evento),
+			filterEventos: []
+		});
+		this.saveOnDatabase(evento);
+		this.toggle();
+	}
+
+	handleDelete(deletedEvento){
+		let eventos = this.state.eventos;
+		eventos = eventos.filter((evento) => {
+			if(evento._id !== deletedEvento._id){
+				return true;
+			}
+		});
+		this.setState({
+			eventos: eventos,
+			filterEventos: []
+		});
+		this.deleteFromDatabase(deletedEvento);
+
 	}
 
 	toggle() {
@@ -52,27 +112,29 @@ class Eventos extends Component {
 	}
 
 	render(){
-		let eventoItens;
+		
+
+		let eventos;
 		if(this.state.eventos){
-			eventoItens = this.state.eventos.map(evento => {
-				return (
-					<EventosItem key={evento.title} evento={evento}/>
+			eventos = this.state.eventos.map(evento => {
+				return(
+					<EventosItem key={evento._id} evento={evento} delete={this.handleDelete}/>
 				);
 			});
 		}
-		
+
 		return(
 			<Container className="text-center content">
 				<h1 className="large-space">Lista de Eventos</h1>
 				<Col>
-					{eventoItens}
+					{eventos}
 				</Col>
 				<Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>
 
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Adicionar Evento</ModalHeader>
 					<ModalBody>
-						<FormEvents />
+						<FormEvents handleSubmit={this.handleSubmit} />
 					</ModalBody>
 				</Modal>
 			</Container>
