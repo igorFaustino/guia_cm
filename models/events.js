@@ -1,22 +1,19 @@
 var mongoose = require('mongoose');
 
-// esquema de dados dos locais
+// esquema de dados dos eventos
 var LocalSchema = mongoose.Schema({
-	nome: {
-		type: String
-	},
-	endereco: {
-		type: String
-	},
-	descricao: {
-		type: String
-	},
-	horario: {
+	titulo: {
 		type: String
 	},
 	data: {
 		type: String
 	},
+	local: {
+		type: String
+	},
+	link: {
+		type: String
+	}
 });
 
 module.exports = mongoose.model('Event', LocalSchema);
