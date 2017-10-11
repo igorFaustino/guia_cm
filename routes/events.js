@@ -15,11 +15,10 @@ router.get('/events', function (req, res) {
 // Cadastrar um novo Evento
 router.post('/event', function (req, res) {;
 	let newEvent = new Event({
-		nome: req.body.nome,
-		endereco: req.body.endereco,
-		descricao: req.body.descricao,
+		titulo: req.body.titulo,
 		data: req.body.data,
-		horario: req.body.horario,
+		local: req.body.local,
+		link: req.body.link,
 	});
 
 	Event.addEvent(newEvent, function (err, event) {

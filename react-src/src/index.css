@@ -79,6 +79,13 @@ html, body, {
 	padding: 0px
 }
 
-.map-space{
+.map-space	{
 	margin-bottom: 600px;
 }
+
+.format	{
+	width: 400px;
+	height: 200px;
+	filter: brightness(89%);
+}
+

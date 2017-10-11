@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import { Row, Container } from 'reactstrap';
 import ServicosItem from './ServicosItem';
+import taxi from '../img/taxi.jpg';
+import mudanca from '../img/mudanca.jpg';
+import diarista from '../img/diarista.jpg';
+import delivery from '../img/delivery.jpeg';
+import detetizacao from '../img/detetizacao.jpg';
+import encanador from '../img/encanador.jpg';
 
 import {
 	BrowserRouter as Router,
@@ -20,27 +26,33 @@ componentWillMount(){
 		this.setState(
 			{servicos: [
 				{
-					title: 'Lugares Baratos',
+					title: 'Taxi',
+					img: require('../img/taxi.jpg')
 					
 				},
 				{
-					title: 'Farmacias 24 Horas',
+					title: 'Diarísta',
+					img: require('../img/diarista.jpg')
 					
 				},
 				{
-					title: 'Imobiliaria',
+					title: 'Mudança de Móveis',
+					img: require('../img/mudanca.jpg')
 					
 				},
 				{
-					title: 'Comida de Madrugada ',
+					title: 'Delivery',
+					img: require('../img/delivery.jpeg')
 					
 				},
 				{
-					title: 'Mercados',
+					title: 'Encanador',
+					img: require('../img/encanador.jpg')
 					
 				},
 				{
-					title: 'Pizzarias',
+					title: 'Detetização',
+					img: require('../img/detetizacao.jpg')
 					
 				}
 			]

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Container, Button, Card, CardText, CardBlock, CardTitle, CardSubtitle} from 'reactstrap';
+import { Row, Col, Container} from 'reactstrap';
 import Lista from './Lista';
 
 import {
@@ -16,14 +16,11 @@ class ServicosItem extends Component {
 			<Col sm="4">
 				<Link to={link} className="link">
 				<Container className="text-center">
-					<h1 className="large-space">
-					<Card onClick={this.toggle} style={{ backgroundColor: '#333', borderColor: '#333'}}>
-        				<CardBlock class="large-size">   				
-				          <CardTitle>{this.props.servicos.title}</CardTitle>
-           				</CardBlock>
-      				</Card>
-      				</h1>
-      				</Container>
+					<div>
+					<img src={this.props.servicos.img} className="figure-img img-fluid rounded format"/>
+					</div>
+					<p>{this.props.servicos.title}</p>
+				</Container>
 				</Link>
 			</Col>
 		);
