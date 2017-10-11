@@ -7,7 +7,8 @@ import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, 
 import {
 	BrowserRouter as Router,
 	Route,
-	Link
+	Link,
+	browserHistory
 } from 'react-router-dom'
 
 import Inicio from './components/Inicio.js';
@@ -17,14 +18,7 @@ import Eventos from './components/Eventos.js';
 import Local from './components/Local.js';
 import Servicos from './components/Servicos.js';
 import Lista from './components/Lista.js';
-
-	var items = [
-		<Link to="/categorias">Categorias</Link>,
-		<Link to="/eventos">Eventos</Link>,
-		<Link to="/servicos">Eventos</Link>,
-		<Link to="/classificados">Classificados</Link>
-	];
-
+import Login from './components/Login.js';
 
 const cont_true = false;
 
@@ -47,7 +41,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<Router>
+			<Router history={browserHistory}>
 				<div>
 					<header>
 						<nav className="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
@@ -58,8 +52,7 @@ class App extends Component {
 								</button>
 
 								<div className="collapse navbar-collapse" id="navbarSupportedContent">
-									<ul className="mr-auto mt-2 mt-lg-0"></ul>
-									<ul className="navbar-nav my-2 my-lg-0">
+									<ul className="mr-auto navbar-nav my-2 my-lg-0">
 										<li className="nav-item">
 											<Link to="/localidades" className="nav-link"><span className="my-nav-item">Localidades</span> <span className="sr-only">(current)</span></Link>
 										</li>
@@ -68,6 +61,11 @@ class App extends Component {
 										</li>
 										<li className="nav-item my-nav-item">
 											<Link to="/servicos" className="nav-link"><span className="my-nav-item">Serviços</span><span className="sr-only">(current)</span></Link>
+										</li>
+									</ul>
+									<ul className="navbar-nav  mt-2 mt-lg-0">
+										<li>
+											<Link to="/login" className="nav-link"><span className="my-nav-item">Login</span><span className="sr-only">(current)</span></Link>
 										</li>
 									</ul>
 								</div>
@@ -83,6 +81,7 @@ class App extends Component {
 						<Route exact path="/servicos" component={Servicos}/>
 						<Route exact path="/servicos/:servico" component={Lista}/>
 						<Route path="/eventos" component={Eventos}/>
+						<Route path="/login" component={Login}/>
 						<Route path="/local/:nome" component={Local}/>
 					</Container>
 				</div>
