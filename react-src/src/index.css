@@ -79,6 +79,11 @@ html, body, {
 	padding: 0px
 }
 
-.map-space{
+.map-space	{
 	margin-bottom: 600px;
 }
+
+.filter	{
+	filter: brightness(89%);
+}
+

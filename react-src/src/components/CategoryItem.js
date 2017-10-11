@@ -15,8 +15,8 @@ class CategoryItem extends Component {
 			<Col md="4">
 				<Link to={link} className="link">
 				<Container className="text-center">
-					<div className="icons">
-						<span className={this.props.category.icon} ></span>
+					<div>
+						<img src={this.props.category.img} className="figure-img img-fluid rounded filter"/>
 					</div>
 					<p>{this.props.category.title}</p>
 				</Container>
