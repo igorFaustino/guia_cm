@@ -83,7 +83,9 @@ html, body, {
 	margin-bottom: 600px;
 }
 
-.filter	{
+.format	{
+	width: 400px;
+	height: 200px;
 	filter: brightness(89%);
 }
 

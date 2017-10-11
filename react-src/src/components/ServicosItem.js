@@ -16,8 +16,8 @@ class ServicosItem extends Component {
 			<Col sm="4">
 				<Link to={link} className="link">
 				<Container className="text-center">
-					<div className="icons">
-						<span className={this.props.servicos.icon} ></span>
+					<div>
+					<img src={this.props.servicos.img} className="figure-img img-fluid rounded format"/>
 					</div>
 					<p>{this.props.servicos.title}</p>
 				</Container>

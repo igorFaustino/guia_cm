@@ -16,7 +16,7 @@ class CategoryItem extends Component {
 				<Link to={link} className="link">
 				<Container className="text-center">
 					<div>
-						<img src={this.props.category.img} className="figure-img img-fluid rounded filter"/>
+						<img src={this.props.category.img} className="figure-img img-fluid rounded format"/>
 					</div>
 					<p>{this.props.category.title}</p>
 				</Container>

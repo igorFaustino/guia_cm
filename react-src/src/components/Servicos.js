@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import { Row, Container } from 'reactstrap';
 import ServicosItem from './ServicosItem';
+import taxi from '../img/taxi.jpg';
+import mudanca from '../img/mudanca.jpg';
+import diarista from '../img/diarista.jpg';
+import delivery from '../img/delivery.jpeg';
+import detetizacao from '../img/detetizacao.jpg';
+import encanador from '../img/encanador.jpg';
 
 import {
 	BrowserRouter as Router,
@@ -21,32 +27,32 @@ componentWillMount(){
 			{servicos: [
 				{
 					title: 'Taxi',
-					icon: 'ion-android-bus'
+					img: require('../img/taxi.jpg')
 					
 				},
 				{
 					title: 'Diarísta',
-					icon: 'ion-android-walk'
+					img: require('../img/diarista.jpg')
 					
 				},
 				{
 					title: 'Mudança de Móveis',
-					icon: 'ion-android-archive'
+					img: require('../img/mudanca.jpg')
 					
 				},
 				{
 					title: 'Delivery',
-					icon: 'ion-android-restaurant'
+					img: require('../img/delivery.jpeg')
 					
 				},
 				{
 					title: 'Encanador',
-					icon: 'ion-wrench'
+					img: require('../img/encanador.jpg')
 					
 				},
 				{
 					title: 'Detetização',
-					icon: 'ion-bug'
+					img: require('../img/detetizacao.jpg')
 					
 				}
 			]
