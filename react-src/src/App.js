@@ -51,10 +51,10 @@ class App extends Component {
 		if(user){
 			rightMenu = (	
 							<div>
-								<li>
+								<li className="nav-item">
 									<Link to="/profile" className="nav-link"><span className="my-nav-item"> {user.displayName}</span><span className="sr-only">(current)</span></Link>
 								</li>
-								<li>
+								<li className="nav-item">
 									<a className="nav-link" onClick={this.logOut}>Log Out</a>
 								</li>
 							</div>
@@ -62,7 +62,7 @@ class App extends Component {
 		} else {
 			rightMenu = (
 							<div>
-								<li>
+								<li className="nav-item">
 									<Link to="/login" className="nav-link"><span className="my-nav-item">Login</span><span className="sr-only" >(current)</span></Link>
 								</li>
 							</div>

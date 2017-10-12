@@ -5,14 +5,18 @@ var classNames = require('classnames');
 const firebase = require('firebase');
 const localStorageAuth = require('../util/localHostAuth.js');
 
-var config = {
-	apiKey: "AIzaSyC5NsEaFZSMNvdWmMOha9jx-Evaf2OhEgY",
-	authDomain: "guia-cm.firebaseapp.com",
-	databaseURL: "https://guia-cm.firebaseio.com",
-	projectId: "guia-cm",
-	storageBucket: "guia-cm.appspot.com",
-	messagingSenderId: "946823780391"
-};
+var config = require('../config/firebaseConfig');
+// Exemplo arquivo firebaseConfig:
+// module.exports = {
+// 	apiKey: "hkshDKAHSDLYSDL",
+// 	authDomain: "blablabla",
+// 	databaseURL: "https://blablabla",
+// 	projectId: "blablabla",
+// 	storageBucket: "blablabla.appspot.com",
+// 	messagingSenderId: "13284123846123"
+// }
+
+
 firebase.initializeApp(config);
 
 class Login extends Component {
