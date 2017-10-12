@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Button , InputGroup, Input} from 'reactstrap';
+import { Route, Redirect } from 'react-router'
 var classNames = require('classnames');
 const firebase = require('firebase');
+const localStorageAuth = require('../util/localHostAuth.js');
 
 var config = {
 	apiKey: "AIzaSyC5NsEaFZSMNvdWmMOha9jx-Evaf2OhEgY",
@@ -31,10 +33,12 @@ class Login extends Component {
 			var token = result.credential.accessToken;
 			// The signed-in user info.
 			var user = result.user;
-			localStorage.setItem('user', user);
+			localStorage.setItem('user', JSON.stringify(user));
 			localStorage.setItem('token', token);
 			// ...
 			// Redirecionar aqui!!!
+			window.location.reload()
+			this.props.router.push('/');
 		}).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
@@ -48,6 +52,11 @@ class Login extends Component {
 	}
 
 	render(){
+		if(localStorageAuth.thereIsUser()){
+			return (
+				<Redirect to="/"/>
+			)
+		}
 		return(
 			<form>
 				<InputGroup className="small-space">

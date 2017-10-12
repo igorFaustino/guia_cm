@@ -8,7 +8,6 @@ import {
 	BrowserRouter as Router,
 	Route,
 	Link,
-	browserHistory
 } from 'react-router-dom'
 
 import Inicio from './components/Inicio.js';
@@ -19,6 +18,8 @@ import Local from './components/Local.js';
 import Servicos from './components/Servicos.js';
 import Lista from './components/Lista.js';
 import Login from './components/Login.js';
+
+const localStorageAuth = require('./util/localHostAuth.js');
 
 const cont_true = false;
 
@@ -39,9 +40,42 @@ class App extends Component {
 		});
 	}
 
+	logOut(){
+		localStorage.clear();
+		window.location.reload()
+	}
+
+	rightMenu(){
+		var rightMenu;
+		const user = JSON.parse(localStorageAuth.thereIsUser());
+		if(user){
+			rightMenu = (	
+							<div>
+								<li>
+									<Link to="/profile" className="nav-link"><span className="my-nav-item"> {user.displayName}</span><span className="sr-only">(current)</span></Link>
+								</li>
+								<li>
+									<a className="nav-link" onClick={this.logOut}>Log Out</a>
+								</li>
+							</div>
+						);
+		} else {
+			rightMenu = (
+							<div>
+								<li>
+									<Link to="/login" className="nav-link"><span className="my-nav-item">Login</span><span className="sr-only" >(current)</span></Link>
+								</li>
+							</div>
+						);
+		}
+		return rightMenu;
+	}
+
 	render() {
+		let loginMenu = this.rightMenu();
+		
 		return (
-			<Router history={browserHistory}>
+			<Router>
 				<div>
 					<header>
 						<nav className="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
@@ -64,9 +98,7 @@ class App extends Component {
 										</li>
 									</ul>
 									<ul className="navbar-nav  mt-2 mt-lg-0">
-										<li>
-											<Link to="/login" className="nav-link"><span className="my-nav-item">Login</span><span className="sr-only">(current)</span></Link>
-										</li>
+										{loginMenu}
 									</ul>
 								</div>
 								
