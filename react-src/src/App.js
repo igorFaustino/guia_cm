@@ -50,22 +50,22 @@ class App extends Component {
 		const user = JSON.parse(localStorageAuth.thereIsUser());
 		if(user){
 			rightMenu = (	
-							<div>
+							<ul className="navbar-nav  mt-2 mt-lg-0">
 								<li className="nav-item">
 									<Link to="/profile" className="nav-link"><span className="my-nav-item"> {user.displayName}</span><span className="sr-only">(current)</span></Link>
 								</li>
 								<li className="nav-item">
 									<a className="nav-link" onClick={this.logOut}>Log Out</a>
 								</li>
-							</div>
+							</ul>
 						);
 		} else {
 			rightMenu = (
-							<div>
+							<ul className="navbar-nav  mt-2 mt-lg-0">	
 								<li className="nav-item">
 									<Link to="/login" className="nav-link"><span className="my-nav-item">Login</span><span className="sr-only" >(current)</span></Link>
 								</li>
-							</div>
+							</ul>
 						);
 		}
 		return rightMenu;
@@ -97,9 +97,7 @@ class App extends Component {
 											<Link to="/servicos" className="nav-link"><span className="my-nav-item">Serviços</span><span className="sr-only">(current)</span></Link>
 										</li>
 									</ul>
-									<ul className="navbar-nav  mt-2 mt-lg-0">
-										{loginMenu}
-									</ul>
+									{loginMenu}
 								</div>
 								
 						</nav>
