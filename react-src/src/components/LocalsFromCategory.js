@@ -4,7 +4,9 @@ import { InputGroup, Row, Col, Container, Input, InputGroupButton, InputGroupAdd
 import Local from './LocalsItem.js';
 import FormLocals from './FormLocals.js';
 
-class Category extends Component {
+const localStorageAuth = require('../util/localHostAuth.js');
+
+class LocalsFromCategory extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -164,6 +166,13 @@ class Category extends Component {
 				);
 			});	
 		}
+
+		// add button
+		let addButton;
+		if(localStorageAuth.thereIsAdim()){
+			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;
+		}
+
 		return (
 			<Container className="content">
 				<h1 className="text-center large-space">{category}</h1>
@@ -176,7 +185,7 @@ class Category extends Component {
 				<Row>
 					{locals}
 				</Row>
-				<Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>
+				{addButton}
 
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Adicionar Local</ModalHeader>
@@ -195,4 +204,4 @@ function categoryTitle(props) {
 	return category;
 }
 
-export default Category;
+export default LocalsFromCategory;

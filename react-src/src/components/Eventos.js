@@ -3,6 +3,8 @@ import { Col, Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } fr
 import  EventosItem from './EventosItem';
 import  FormEvents from './FormEvents';
 
+const localStorageAuth = require('../util/localHostAuth.js');
+
 class Eventos extends Component {
 	constructor(){
 		super();
@@ -112,7 +114,10 @@ class Eventos extends Component {
 	}
 
 	render(){
-		
+		let addButton;
+		if(localStorageAuth.thereIsAdim()){
+			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;
+		}
 
 		let eventos;
 		if(this.state.eventos){
@@ -129,7 +134,7 @@ class Eventos extends Component {
 				<Col>
 					{eventos}
 				</Col>
-				<Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>
+				{addButton}
 
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Adicionar Evento</ModalHeader>

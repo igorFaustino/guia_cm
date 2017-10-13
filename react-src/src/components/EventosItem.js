@@ -3,6 +3,9 @@ import { Container, Col, Row, Button } from 'reactstrap';
 
 import img from '../img/rockinrio.jpg';
 
+
+const localStorageAuth = require('../util/localHostAuth.js');
+
 class EventosItem extends Component {
 	constructor(){
 		super();
@@ -15,11 +18,16 @@ class EventosItem extends Component {
 	}
 
 	render() {
+		let deleteButton;
+		if(localStorageAuth.thereIsAdim()){
+			deleteButton = <Button color="danger" className="margin-sides" onClick={this.handleDelete}>Deletar</Button>;
+		}
+
 		return (
 				<Container>
 					<Row>
 						<Col md="6" className="img-eventos">
-							<Button color="danger" className="margin-sides" onClick={this.handleDelete}>Deletar</Button>
+							{deleteButton}
 							<img src={img} className="rounded"></img>
 						</Col>
 						<Col md="6">

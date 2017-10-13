@@ -9,6 +9,8 @@ import {
 	Link
 } from 'react-router-dom'
 
+const localStorageAuth = require('../util/localHostAuth.js');
+
 class LocalsItem extends Component {
 	constructor(){
 		super();
@@ -23,6 +25,12 @@ class LocalsItem extends Component {
 
 	render() {
 		let link = "/local/" + this.props.local.nome.toLowerCase();
+
+		let deleteButton;
+		if(localStorageAuth.thereIsAdim()){
+			deleteButton = <Button color="danger" className="align-center" onClick={this.handleDelete} >Deletar</Button>;
+		}
+
 		return (
 			<Col xs="12" sm="6" md="4">
 				<figure className="figure">
@@ -37,7 +45,7 @@ class LocalsItem extends Component {
 								<p>{this.props.local.endereco}</p>
 							</div>
 						</Link>
-						<Button color="danger" className="align-center" onClick={this.handleDelete} >Deletar</Button>
+						{deleteButton}
 					</figcaption>
 				</figure>
 			</Col>

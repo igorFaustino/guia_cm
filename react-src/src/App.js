@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Content from './components/Content.js';
 import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Jumbotron } from 'reactstrap';
 
 import {
@@ -12,7 +11,7 @@ import {
 
 import Inicio from './components/Inicio.js';
 import Categories from './components/Categories.js';
-import Category from './components/Category.js';
+import LocalsFromCategory from './components/LocalsFromCategory.js';
 import Eventos from './components/Eventos.js';
 import Local from './components/Local.js';
 import Servicos from './components/Servicos.js';
@@ -107,7 +106,7 @@ class App extends Component {
 					<Container>
 						<Route exact path="/" component={Inicio}/>
 						<Route exact path="/localidades" component={Categories}/>
-						<Route exact path="/localidades/:categoria" component={Category}/>
+						<Route exact path="/localidades/:categoria" component={LocalsFromCategory}/>
 						<Route exact path="/servicos" component={Servicos}/>
 						<Route exact path="/servicos/:servico" component={Lista}/>
 						<Route path="/eventos" component={Eventos}/>

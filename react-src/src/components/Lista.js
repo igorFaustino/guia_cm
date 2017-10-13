@@ -3,6 +3,8 @@ import { Col, Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } fr
 import FormService from './FormService';
 import ServicoItem from './ListaItemServico';
 
+const localStorageAuth = require('../util/localHostAuth.js');
+
 class Servico extends Component {
   constructor(){
     super();
@@ -58,6 +60,11 @@ class Servico extends Component {
         );
       });
     }
+
+		let addButton;
+		if(localStorageAuth.thereIsAdim()){
+			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;
+		}
     
     return(
       <Container className="text-center content">
@@ -65,7 +72,7 @@ class Servico extends Component {
         <Col>
           {servicoItens}
         </Col>
-        <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>
+        {addButton}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
           <ModalHeader toggle={this.toggle}>Adicionar Servico</ModalHeader>

@@ -39,10 +39,21 @@ class Login extends Component {
 			var user = result.user;
 			localStorage.setItem('user', JSON.stringify(user));
 			localStorage.setItem('token', token);
-			// ...
-			// Redirecionar aqui!!!
+			console.log(user.email);
+			fetch('http://localhost:5000/users/admin/' + user.email, {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*'
+				}
+			}).then((response) => response.json()).then((user) => {
+				if(user.email){
+					localStorage.setItem('admin', 'true');
+				}
+			});
+
 			window.location.reload()
-			this.props.router.push('/');
 		}).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
