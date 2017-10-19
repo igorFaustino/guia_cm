@@ -3,7 +3,9 @@ const path = require('path'); // require path -> simplificar paths
 const bodyParser = require('body-parser'); // require body-parser -> pegar informações de POSTS
 const cors = require('cors') // require cors
 const mongoose = require('mongoose'); // require mongoose -> banco de dados
+const passport = require('passport') // authenticate
 const config = require('./config/database.js'); // database config
+const adminFireBase = require("firebase-admin");
 
 //conectando ao banco de dados
 mongoose.connect(config.database, {
@@ -15,15 +17,16 @@ mongoose.connection.on('connected', function () {
 	console.log('Connect to database');
 });
 
+// firebase
+
+var serviceAccount = require("./config/guia-cm-br-firebase-adminsdk-ooyqn-91a500beca.json");
+
+adminFireBase.initializeApp({
+  credential: adminFireBase.credential.cert(serviceAccount)
+});
+
 // iniciando express. 
 var app = express();
-
-// rotas!
-var maps = require('./routes/maps');
-var locals = require('./routes/locals');
-var events = require('./routes/events');
-var services = require('./routes/services');
-var admin = require('./routes/admin');
 
 // set CORS MW
 app.use(cors());
@@ -33,10 +36,23 @@ var port = 5000;
 
 // Set Static Folder 
 app.use(express.static(path.join(__dirname, 'public'))); 
- 
+
 // Body Parser MW 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: false})); 
+
+// Passport MW
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport.js')(passport);
+
+// rotas!
+var maps = require('./routes/maps');
+var locals = require('./routes/locals');
+var events = require('./routes/events');
+var services = require('./routes/services');
+var admin = require('./routes/admin');
 
 app.use('/api/maps', maps);
 app.use('/api', locals);

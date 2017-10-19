@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Service = require('../models/service');
+const passport = require('passport');
 
 // Retorna todos os Serviços
 router.get('/services', function (req, res) {
@@ -13,7 +14,7 @@ router.get('/services', function (req, res) {
 });
 
 // Cadastrar um novo serviço
-router.post('/service', function (req, res) {;
+router.post('/service', passport.authenticate('jwt', { session: false}), function (req, res) {;
 	let newService = new Service({
 		nome: req.body.nome,
 		info: req.body.info,
@@ -31,7 +32,7 @@ router.post('/service', function (req, res) {;
 })
 
 // Deletar serviço
-router.delete('/service/:id', function (req, res) {
+router.delete('/service/:id', passport.authenticate('jwt', { session: false}), function (req, res) {
 	var id = req.params.id;
 	Service.deleteService(id, function (err, task) {
 		if (err) {

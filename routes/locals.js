@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var Local = require('../models/local');
+const express = require('express');
+const router = express.Router();
+const Local = require('../models/local');
+const passport = require('passport');
 
 // Retorna todos os locais
 router.get('/locals', function (req, res) {
@@ -23,7 +24,7 @@ router.get('/local/:id', function (req, res) {
 });
 
 // Cadastrar um novo local.
-router.post('/local', function (req, res) {;
+router.post('/local', passport.authenticate('jwt', { session: false}), function (req, res) {;
 	let newLocal = new Local(req.body);
 
 	Local.addLocal(newLocal, function (err, local) {
@@ -36,7 +37,7 @@ router.post('/local', function (req, res) {;
 })
 
 // Alterar dados do local
-router.put('/local', function (req, res) {
+router.put('/local', passport.authenticate('jwt', { session: false}), function (req, res) {
 	var updatedLocal = req.body;
 	
 	Local.updateLocal(updatedLocal, function (err, task) {
@@ -49,7 +50,7 @@ router.put('/local', function (req, res) {
 })
 
 // Deletar Local
-router.delete('/local/:id', function (req, res) {
+router.delete('/local/:id', passport.authenticate('jwt', { session: false}), function (req, res) {
 	var id = req.params.id;
 	Local.deleteLocal(id, function (err, task) {
 		if (err) {

@@ -51,7 +51,8 @@ class LocalsFromCategory extends Component {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
+				'Access-Control-Allow-Origin': '*',
+				'Authorization': localStorage.getItem('admin'),
 			},
 			body: JSON.stringify({
 				'nome': local.nome,
@@ -62,6 +63,10 @@ class LocalsFromCategory extends Component {
 		}).then((response) => response.json()).then((json) => {
 			console.log(json);
 			if(json.success){
+				this.setState({
+					locals: this.state.locals.concat(json.local),
+					filterLocals: []
+				});
 				alert("show");
 			} else {
 				alert("droga");
@@ -69,19 +74,30 @@ class LocalsFromCategory extends Component {
 		});
 	}
 
-	deleteFromDatabase(local){
-		fetch('http://localhost:5000/api/local/' + local._id, {
+	deleteFromDatabase(deletedLocal){
+		fetch('http://localhost:5000/api/local/' + deletedLocal._id, {
 			method: 'DELETE',
 			// mode: 'no-cors',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
+				'Access-Control-Allow-Origin': '*',
+				'Authorization': localStorage.getItem('admin'),
 			},
 		}).then((response) => response.json()).then((json) => {
 			console.log(json);
 			if(json.success){
 				alert("show");
+				let locals = this.state.locals;
+				locals = locals.filter((local)=>{
+					if(local._id !== deletedLocal._id){
+						return true;
+					}
+				});
+				this.setState({
+					locals: locals,
+					filterLocals: []
+				});
 			} else {
 				alert("droga");
 			}
@@ -94,25 +110,12 @@ class LocalsFromCategory extends Component {
 	}
 
 	handleSubmit(local){
-		this.setState({
-			locals: this.state.locals.concat(local),
-			filterLocals: []
-		});
 		this.saveOnDatabase(local);
 		this.toggle();
 	}
 
 	handleDelete(deletedLocal){
-		let locals = this.state.locals;
-		locals = locals.filter((local)=>{
-			if(local._id !== deletedLocal._id){
-				return true;
-			}
-		});
-		this.setState({
-			locals: locals,
-			filterLocals: []
-		});
+
 		this.deleteFromDatabase(deletedLocal);
 	}
 

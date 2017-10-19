@@ -27,8 +27,7 @@ class Login extends Component {
 		this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
 	}
 
-	componentWillMount(){
-	}
+	componentWillMount(){ }
 
 	handleGoogleLogin(){
 		var provider = new firebase.auth.GoogleAuthProvider();
@@ -39,21 +38,25 @@ class Login extends Component {
 			var user = result.user;
 			localStorage.setItem('user', JSON.stringify(user));
 			localStorage.setItem('token', token);
-			console.log(user.email);
-			fetch('http://localhost:5000/users/admin/' + user.email, {
-				method: 'GET',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*'
-				}
-			}).then((response) => response.json()).then((user) => {
-				if(user.email){
-					localStorage.setItem('admin', 'true');
-				}
+
+			firebase.auth().currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
+				fetch('http://localhost:5000/users/login', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						'idToken' : idToken
+					})
+				}).then((response) => response.json()).then((json) => {
+					console.log(json);
+					if(json.success){
+						localStorage.setItem('admin', json.token);
+					}
+					window.location.reload()
+				});
 			});
 
-			window.location.reload()
 		}).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;

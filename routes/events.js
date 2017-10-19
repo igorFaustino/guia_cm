@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var Event = require('../models/events');
+const express = require('express');
+const router = express.Router();
+const Event = require('../models/events');
+const passport = require('passport');
 
 // Retorna todos os Eventos
 router.get('/events', function (req, res) {
@@ -13,7 +14,7 @@ router.get('/events', function (req, res) {
 });
 
 // Cadastrar um novo Evento
-router.post('/event', function (req, res) {;
+router.post('/event', passport.authenticate('jwt', { session: false}), function (req, res) {;
 	let newEvent = new Event({
 		titulo: req.body.titulo,
 		data: req.body.data,
@@ -31,7 +32,7 @@ router.post('/event', function (req, res) {;
 })
 
 // Deletar Evento
-router.delete('/event/:id', function (req, res) {
+router.delete('/event/:id', passport.authenticate('jwt', { session: false}), function (req, res) {
 	var id = req.params.id;
 	Event.deleteEvent(id, function (err, task) {
 		if (err) {

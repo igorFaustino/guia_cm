@@ -41,7 +41,8 @@ class Eventos extends Component {
 		fetch('http://localhost:5000/api/event', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('admin'),
 			},
 			body: JSON.stringify({
 				'titulo' : evento.titulo,
@@ -50,9 +51,12 @@ class Eventos extends Component {
 				'link' : evento.link
 			})
 		}).then((response) => response.json()).then((json) => {
-			console.log(json);
 			if(json.success){
 				alert("daora");
+				this.setState({
+					eventos: this.state.eventos.concat(evento),
+					filterEventos: []
+				});
 			}
 			else{
 				alert("deu ruim");
@@ -60,18 +64,29 @@ class Eventos extends Component {
 		});
 	}
 
-	deleteFromDatabase(evento){
-		fetch('http://localhost:5000/api/event/' + evento._id, {
+	deleteFromDatabase(deletedEvento){
+		fetch('http://localhost:5000/api/event/' + deletedEvento._id, {
 			method: 'DELETE',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
+				'Access-Control-Allow-Origin': '*',
+				'Authorization': localStorage.getItem('admin'),
 			}
 		}).then((response) => response.json()).then((json) => {
 			console.log(json);
 			if(json.success){
 				alert("daora");
+				let eventos = this.state.eventos;
+				eventos = eventos.filter((evento) => {
+					if(evento._id !== deletedEvento._id){
+						return true;
+					}
+				});
+				this.setState({
+					eventos: eventos,
+					filterEventos: []
+				});
 			}
 			else{
 				alert("deu ruim");
@@ -84,25 +99,11 @@ class Eventos extends Component {
 	}
 
 	handleSubmit(evento){
-		this.setState({
-			eventos: this.state.eventos.concat(evento),
-			filterEventos: []
-		});
 		this.saveOnDatabase(evento);
 		this.toggle();
 	}
 
 	handleDelete(deletedEvento){
-		let eventos = this.state.eventos;
-		eventos = eventos.filter((evento) => {
-			if(evento._id !== deletedEvento._id){
-				return true;
-			}
-		});
-		this.setState({
-			eventos: eventos,
-			filterEventos: []
-		});
 		this.deleteFromDatabase(deletedEvento);
 
 	}

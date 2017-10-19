@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Admin = require('../models/admin');
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const adminFireBase = require("firebase-admin");
+const config = require("../config/database")
 
 // Retorna todos os Admin
 router.get('/admin', function (req, res) {
@@ -13,8 +17,8 @@ router.get('/admin', function (req, res) {
 });
 
 // Retorna um admin
-router.get('/admin/:email', function (req, res){
-	Admin.getAdminByEmail(req.params.email, function (err, admin){
+router.get('/admin/:uid', function (req, res){
+	Admin.getAdminByEmail(req.params.uid, function (err, admin){
 		if (err){
 			res.send(err);
 		}
@@ -27,7 +31,7 @@ router.get('/admin/:email', function (req, res){
 });
 
 // Cadastrar um novo Admin
-router.post('/admin', function (req, res) {;
+router.post('/admin', passport.authenticate('jwt', { session: false}), function (req, res) {;
 	let newAdmin = new Admin({
 		email: req.body.email,
 	});
@@ -42,7 +46,7 @@ router.post('/admin', function (req, res) {;
 })
 
 // Deletar Admin
-router.delete('/admin/:id', function (req, res) {
+router.delete('/admin/:id', passport.authenticate('jwt', { session: false}), function (req, res) {
 	var id = req.params.id;
 	Admin.deleteAdmin(id, function (err, task) {
 		if (err) {
@@ -51,6 +55,34 @@ router.delete('/admin/:id', function (req, res) {
 			res.json({success: true, msg: 'Admin deletado!'});
 		}
 	});
+});
+
+// login admin
+router.post('/login', function (req, res) {
+	const idToken = req.body.idToken;
+	let uid;
+	let email;
+	adminFireBase.auth().verifyIdToken(idToken).then(decodedToken => {
+		uid = decodedToken.user_id;
+		email = decodedToken.email;
+		Admin.getAdmin(uid, email, function (err, admin){
+			if (err){
+				res.send(err);
+			}
+			if(admin){
+				const token = jwt.sign(admin, config.secret);
+				res.json({
+					success: true,
+					token: 'JWT ' + token,
+				});
+			} else {
+				res.json({
+					success: false
+				})
+			}
+		})
+	});
+
 });
 
 module.exports = router;
