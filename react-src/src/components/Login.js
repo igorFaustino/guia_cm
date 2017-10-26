@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button , InputGroup, Input} from 'reactstrap';
-import { Route, Redirect } from 'react-router'
-var classNames = require('classnames');
+import { Redirect } from 'react-router'
 const firebase = require('firebase');
 const localStorageAuth = require('../util/localHostAuth.js');
 
@@ -58,14 +57,7 @@ class Login extends Component {
 			});
 
 		}).catch(function(error) {
-			// Handle Errors here.
-			var errorCode = error.code;
-			var errorMessage = error.message;
-			// The email of the user's account used.
-			var email = error.email;
-			// The firebase.auth.AuthCredential type that was used.
-			var credential = error.credential;
-			// ...
+			alert("Ocoreu uma falha");
 		});
 	}
 

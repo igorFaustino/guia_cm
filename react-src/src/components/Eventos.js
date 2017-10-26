@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import  EventosItem from './EventosItem';
 import  FormEvents from './FormEvents';
 
@@ -82,6 +82,7 @@ class Eventos extends Component {
 					if(evento._id !== deletedEvento._id){
 						return true;
 					}
+					return false;
 				});
 				this.setState({
 					eventos: eventos,

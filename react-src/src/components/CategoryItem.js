@@ -10,7 +10,7 @@ import {
 class CategoryItem extends Component {
 
 	render() {
-		let link = "/localidades/" + this.props.category.title.toLowerCase();
+		let link = this.props.link + this.props.category.nome.toLowerCase();
 		return (
 			<Col md="4">
 				<Link to={link} className="link">
@@ -18,7 +18,7 @@ class CategoryItem extends Component {
 					<div>
 						<img src={this.props.category.img} className="figure-img img-fluid rounded format"/>
 					</div>
-					<p>{this.props.category.title}</p>
+					<p>{this.props.category.nome}</p>
 				</Container>
 				</Link>
 			</Col>

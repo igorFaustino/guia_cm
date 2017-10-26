@@ -25,7 +25,7 @@ class FormService extends Component {
 
 	handleNomeChange(e){
 		this.setState({nome: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.nome = false;
 		} else {
 			this.nome = true;
@@ -34,7 +34,7 @@ class FormService extends Component {
 
 	handleInfoChange(e){
 		this.setState({info: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.info = false;
 		} else {
 			this.info = true;
@@ -43,7 +43,7 @@ class FormService extends Component {
 
 	handleTelChange(e){
 		this.setState({tel: e.target.value});
-		if(e.target.value == ''){
+		if(e.target.value === ''){
 			this.tel = false;
 		} else {
 			this.tel = true;
@@ -56,19 +56,19 @@ class FormService extends Component {
 
 	render(){
 		var validationNome = classNames({
-			'is-valid': this.nome && this.nome != undefined,
-			'is-invalid': !this.nome && this.nome != undefined,
+			'is-valid': this.nome && this.nome !== undefined,
+			'is-invalid': !this.nome && this.nome !== undefined,
 		});
 
 		var validationInfo = classNames({
 			'form-control': true,
-			'is-valid': this.info && this.info != undefined,
-			'is-invalid': !this.info && this.info != undefined,
+			'is-valid': this.info && this.info !== undefined,
+			'is-invalid': !this.info && this.info !== undefined,
 		});
 
 		var validationTel = classNames({
-			'is-valid': this.tel && this.tel != undefined,
-			'is-invalid': !this.tel && this.tel != undefined,
+			'is-valid': this.tel && this.tel !== undefined,
+			'is-invalid': !this.tel && this.tel !== undefined,
 		});
 
 		return(

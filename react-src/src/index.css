@@ -93,3 +93,7 @@ html, body, {
 	margin-top: auto;
 	margin-bottom: auto;
 }
+
+.user-img{
+	max-width: 10%;
+}

@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import CategoryItem from './CategoryItem';
 import Carrossel from './Carrossel';
-import coffe from '../img/cafeteria.jpg';
-import atividade from '../img/atividade.jpg';
-import domingo from '../img/domingo.jpg';
-import sebo from '../img/sebo.jpg';
-import banco from '../img/dinheiro.jpg';
-import moveis from '../img/moveis.jpg';
-import mercado from '../img/mercado.jpg';
-import imobiliaria from '../img/imobiliaria.jpg';
-import farmacia from '../img/farmacia.jpg';
+// import coffe from '../img/cafeteria.jpg';
+// import atividade from '../img/atividade.jpg';
+// import domingo from '../img/domingo.jpg';
+// import sebo from '../img/sebo.jpg';
+// import banco from '../img/dinheiro.jpg';
+// import moveis from '../img/moveis.jpg';
+// import mercado from '../img/mercado.jpg';
+// import imobiliaria from '../img/imobiliaria.jpg';
+// import farmacia from '../img/farmacia.jpg';
 
-import { Row, Col, Container, Button } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 
 
 
-import {
-	BrowserRouter as Router,
-	Route,
-	Link
-} from 'react-router-dom'
+// import {
+// 	BrowserRouter as Router,
+// 	Route,
+// 	Link
+// } from 'react-router-dom'
 
 class Inicio extends Component {
 	constructor(){
@@ -32,35 +32,35 @@ class Inicio extends Component {
 		this.setState(
 			{categories: [
 				{
-					title: 'Atividades fisicas',
+					nome: 'Atividades fisicas',
 					img: require('../img/atividade.jpg')
 				},
 				{
-					title: 'Comer no Domingo',
+					nome: 'Comer no Domingo',
 					img: require('../img/domingo.jpg')
 				},
 				{
-					title: 'Imobiliária',
+					nome: 'Imobiliária',
 					img: require('../img/imobiliaria.jpg')
 				},
 				{
-					title: 'Sebo',
+					nome: 'Sebo',
 					img: require('../img/sebo.jpg')
 				},
 				{
-					title: 'Hospitais e Farmácias',
+					nome: 'Hospitais e Farmácias',
 					img: require('../img/farmacia.jpg')
 				},
 				{
-					title: 'Banco',
+					nome: 'Banco',
 					img: require('../img/dinheiro.jpg')
 				},
 				{
-					title: 'Moveis Usados',
+					nome: 'Moveis Usados',
 					img: require('../img/moveis.jpg')
 				},
 				{
-					title: 'Mercados baratos',
+					nome: 'Mercados baratos',
 					img: require('../img/mercado.jpg')
 				}
 			]
@@ -72,7 +72,7 @@ class Inicio extends Component {
 		if(this.state.categories){
 			categoryItens = this.state.categories.map(category => {
 				return (
-					<CategoryItem key={category.title} category={category} />
+					<CategoryItem key={category.nome} category={category} />
 				);
 			});
 		}

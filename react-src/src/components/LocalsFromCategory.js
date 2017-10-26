@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, Row, Col, Container, Input, InputGroupButton, InputGroupAddon, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {  Row, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Local from './LocalsItem.js';
 import FormLocals from './FormLocals.js';
@@ -93,6 +93,7 @@ class LocalsFromCategory extends Component {
 					if(local._id !== deletedLocal._id){
 						return true;
 					}
+					return false;
 				});
 				this.setState({
 					locals: locals,
@@ -130,6 +131,7 @@ class LocalsFromCategory extends Component {
 				if (local.nome.toUpperCase().indexOf(value.toUpperCase()) > -1) {
 					return local;
 				}
+				return false;
 			});
 			if(locals.length > 0){
 				this.setState({
