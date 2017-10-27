@@ -19,7 +19,7 @@ router.post('/service', passport.authenticate('jwt', { session: false}), functio
 		nome: req.body.nome,
 		info: req.body.info,
 		telefone: req.body.telefone,
-		categoria: req.body.data,
+		categoria: req.body.categoria,
 	});
 
 	Service.addService(newService, function (err, service) {
