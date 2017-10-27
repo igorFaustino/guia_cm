@@ -36,15 +36,15 @@ class App extends Component {
 		this.setState({
 			categoriesLocalidades: [{
 				nome: 'Lazer',
-				icon: 'ion-ios-football'
+				img: require ('./img/lazer.jpg')
 			},
 			{
 				nome: 'Alimentação',
-				icon: 'ion-pizza'
+				img: require ('./img/alimentacao.jpg')
 			},
 			{
 				nome: 'Compras',
-				icon: 'ion-ios-cart'
+				img: require ('./img/compras.jpg')
 			}],
 			categoriesServicos: [
 				{
