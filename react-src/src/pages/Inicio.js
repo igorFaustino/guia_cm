@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CategoryItem from './CategoryItem';
-import Carrossel from './Carrossel';
+import CategoriaItem from '../components/CategoriaItem';
+import Carrossel from '../components/Carrossel';
 // import coffe from '../img/cafeteria.jpg';
 // import atividade from '../img/atividade.jpg';
 // import domingo from '../img/domingo.jpg';
@@ -72,7 +72,7 @@ class Inicio extends Component {
 		if(this.state.categories){
 			categoryItens = this.state.categories.map(category => {
 				return (
-					<CategoryItem key={category.nome} category={category} />
+					<CategoriaItem key={category.nome} category={category} link="/localidades/"/>
 				);
 			});
 		}

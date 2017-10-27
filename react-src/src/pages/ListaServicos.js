@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Col, Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import FormService from './FormService';
-import ServicoItem from './ListaItemServico';
+import FormService from '../components/FormService';
+import ServicoItem from '../components/ServicoItem';
 
 const localStorageAuth = require('../util/localHostAuth.js');
 
-class Servico extends Component {
+class ListaServicos extends Component {
   constructor(){
     super();
     this.state = {
@@ -87,4 +87,4 @@ class Servico extends Component {
   
 }
 
-export default Servico;
+export default ListaServicos;
