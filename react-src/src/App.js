@@ -15,6 +15,7 @@ import ListaEventos from './pages/ListaEventos.js';
 import Local from './pages/Local.js';
 import ListaServicos from './pages/ListaServicos.js';
 import Login from './pages/Login.js';
+import Perfil from './pages/Perfil.js';
 
 const localStorageAuth = require('./util/localHostAuth.js');
 
@@ -36,15 +37,15 @@ class App extends Component {
 		this.setState({
 			categoriesLocalidades: [{
 				nome: 'Lazer',
-				icon: 'ion-ios-football'
+				img: require ('./img/lazer.jpg')
 			},
 			{
 				nome: 'Alimentação',
-				icon: 'ion-pizza'
+				img: require ('./img/alimentacao.jpg')
 			},
 			{
 				nome: 'Compras',
-				icon: 'ion-ios-cart'
+				img: require ('./img/compras.jpg')
 			}],
 			categoriesServicos: [
 				{
@@ -165,6 +166,8 @@ class App extends Component {
 						<Route path="/eventos" component={ListaEventos}/>
 						<Route path="/login" component={Login}/>
 						<Route path="/local/:nome" component={Local}/>
+						<Route path="/profile" component={Perfil}/>
+						
 					</Container>
 				</div>
 			</Router>

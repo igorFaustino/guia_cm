@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import CategoriaItem from '../components/CategoriaItem';
 import Carrossel from '../components/Carrossel';
 // import coffe from '../img/cafeteria.jpg';

@@ -89,6 +89,11 @@ html, body, {
 	filter: brightness(89%);
 }
 
+.format1	{
+	width: 200px;
+	height: 200px;
+}
+
 .margin-top{
 	margin-top: auto;
 	margin-bottom: auto;
