@@ -39,7 +39,7 @@ class ServicoItem extends Component {
 							</Container>
 						</Col>
 						<Col md="6">
-							<h3>{this.props.servico.descricao}</h3>
+							<h3>{this.props.servico.info}</h3>
 						</Col>
 					</Row>
 					<hr/>
