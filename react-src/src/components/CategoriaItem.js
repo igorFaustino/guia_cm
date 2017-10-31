@@ -7,7 +7,7 @@ import {
 	Link
 } from 'react-router-dom'
 
-class CategoryItem extends Component {
+class CategoriaItem extends Component {
 
 	render() {
 		let link = this.props.link + this.props.category.nome.toLowerCase();
@@ -26,4 +26,4 @@ class CategoryItem extends Component {
 	}
 }
 
-export default CategoryItem;
+export default CategoriaItem;

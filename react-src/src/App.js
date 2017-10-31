@@ -8,13 +8,14 @@ import {
 	Link,
 } from 'react-router-dom'
 
-import Inicio from './components/Inicio.js';
-import Categories from './components/Categories.js';
-import LocalsFromCategory from './components/LocalsFromCategory.js';
-import Eventos from './components/Eventos.js';
-import Local from './components/Local.js';
-import Lista from './components/Lista.js';
-import Login from './components/Login.js';
+import Inicio from './pages/Inicio.js';
+import Categorias from './pages/Categorias.js';
+import ListaLocais from './pages/ListaLocais.js';
+import ListaEventos from './pages/ListaEventos.js';
+import Local from './pages/Local.js';
+import ListaServicos from './pages/ListaServicos.js';
+import Login from './pages/Login.js';
+import Perfil from './pages/Perfil.js';
 
 const localStorageAuth = require('./util/localHostAuth.js');
 
@@ -155,16 +156,18 @@ class App extends Component {
 					<Container>
 						<Route exact path="/" component={Inicio}/>
 						<Route exact path="/localidades" render={(props) => (
-							<Categories {...props} categories={this.state.categoriesLocalidades} nome="localidades" link="/localidades/"/>
+							<Categorias {...props} categories={this.state.categoriesLocalidades} nome="localidades" link="/localidades/"/>
 						)} />
-						<Route exact path="/localidades/:categoria" component={LocalsFromCategory}/>
+						<Route exact path="/localidades/:categoria" component={ListaLocais}/>
 						<Route exact path="/servicos" render={(props) => (
-							<Categories {...props} categories={this.state.categoriesServicos} nome="serviços" link="/servicos/"/>
+							<Categorias {...props} categories={this.state.categoriesServicos} nome="serviços" link="/servicos/"/>
 						)} />
-						<Route exact path="/servicos/:servico" component={Lista}/>
-						<Route path="/eventos" component={Eventos}/>
+						<Route exact path="/servicos/:servico" component={ListaServicos}/>
+						<Route path="/eventos" component={ListaEventos}/>
 						<Route path="/login" component={Login}/>
 						<Route path="/local/:nome" component={Local}/>
+						<Route path="/profile" component={Perfil}/>
+						
 					</Container>
 				</div>
 			</Router>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 // import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
-import Mapa from './Mapa.js'
+import Mapa from '../components/Mapa.js'
 
-import FormLocals from './FormLocals.js';
+import FormLocals from '../components/FormLocals.js';
 
 
 class Local extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CategoryItem from './CategoryItem';
+import CategoriaItem from '../components/CategoriaItem';
 import { Row, Container } from 'reactstrap';
 
 // import {
@@ -8,7 +8,7 @@ import { Row, Container } from 'reactstrap';
 // 	Link
 // } from 'react-router-dom'
 
-class Categories extends Component {
+class Categorias extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -27,7 +27,7 @@ class Categories extends Component {
 		if(this.state.categories){
 			categoryItens = this.state.categories.map(category => {
 				return (
-					<CategoryItem key={category.nome} category={category} link={this.props.link}/>
+					<CategoriaItem key={category.nome} category={category} link={this.props.link}/>
 				);
 			});
 		}
@@ -43,4 +43,4 @@ class Categories extends Component {
 	}
 }
 
-export default Categories;
+export default Categorias;

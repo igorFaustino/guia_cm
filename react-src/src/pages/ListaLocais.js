@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {  Row, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import Local from './LocalsItem.js';
-import FormLocals from './FormLocals.js';
+import Local from '../components/LocalsItem.js';
+import FormLocals from '../components/FormLocals.js';
 
 const localStorageAuth = require('../util/localHostAuth.js');
 
-class LocalsFromCategory extends Component {
+class ListaLocais extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -209,4 +209,4 @@ function categoryTitle(props) {
 	return category;
 }
 
-export default LocalsFromCategory;
+export default ListaLocais;

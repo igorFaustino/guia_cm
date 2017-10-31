@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import  EventosItem from './EventosItem';
-import  FormEvents from './FormEvents';
+import  EventosItem from '../components/EventosItem';
+import  FormEvents from '../components/FormEvents';
 
 const localStorageAuth = require('../util/localHostAuth.js');
 
-class Eventos extends Component {
+class ListaEventos extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -151,4 +151,4 @@ class Eventos extends Component {
 	
 }
 
-export default Eventos;
+export default ListaEventos;
