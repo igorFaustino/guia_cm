@@ -3,6 +3,7 @@ import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reac
 // import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
 import Mapa from '../components/Mapa.js'
+import Comentarios from '../components/Comentarios'
 
 import FormLocals from '../components/FormLocals.js';
 
@@ -93,6 +94,9 @@ class Local extends Component {
 				</div>
 				<hr/>
 				<Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>
+				<Container>
+					<Comentarios />
+				</Container>
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Editar Local</ModalHeader>
 					<ModalBody>

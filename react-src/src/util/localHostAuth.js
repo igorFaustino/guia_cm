@@ -10,7 +10,7 @@ function thereIsUser(){
 function thereIsAdim(){
 	const user = localStorage.getItem('user')
 	const admin = localStorage.getItem('admin');
-	if(user && admin.length !== 0){
+	if(user && admin){
 		return true;
 	} else {
 		return false;
