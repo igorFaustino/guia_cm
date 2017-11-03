@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+const mapaConfig = require('../config/mapsConfig.js');
+// module.exports = {
+// 	apiKey: '.dfjalkdfjlaksdjfladjflajdslaldfjl'
+// }
 
 const EstiloMapa={ height:'70%', width:'60%'};
 
@@ -19,5 +23,5 @@ export class Mapa extends Component {
 
 {/* API TEMPORARIA */}
 export default GoogleApiWrapper({
-	apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
+	apiKey: mapaConfig.apiKey
 })(Mapa)

@@ -13,6 +13,12 @@ class Comentarios extends Component {
 					user: 'Igor Faustino',
 					comentario: "Muito Legal"
 				},
+				{
+					_id: "xvzxczv",
+					userImage: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
+					user: 'Igor Faustino',
+					comentario: "Muito Legal"
+				},
 			]
 		}
 	}
@@ -35,7 +41,7 @@ class Comentarios extends Component {
 		
 		return (
 			<Container className="small-space">
-				<hr/>
+				<h5>Comentarios</h5>
 				{comentarios}
 				<Form action="">
 					<InputGroup className="small-space">

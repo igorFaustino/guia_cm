@@ -18,6 +18,19 @@ import Login from './pages/Login.js';
 import Perfil from './pages/Perfil.js';
 
 const localStorageAuth = require('./util/localHostAuth.js');
+const firebase = require('firebase');
+
+var config = require('./config/firebaseConfig');
+// Exemplo arquivo firebaseConfig:
+// module.exports = {
+// 	apiKey: "hkshDKAHSDLYSDL",
+// 	authDomain: "blablabla",
+// 	databaseURL: "https://blablabla",
+// 	projectId: "blablabla",
+// 	storageBucket: "blablabla.appspot.com",
+// 	messagingSenderId: "13284123846123"
+// }
+
 
 class App extends Component {
 	
@@ -93,6 +106,39 @@ class App extends Component {
 		window.location.reload()
 	}
 
+	handleGoogleLogin(){
+		var provider = new firebase.auth.GoogleAuthProvider();
+		firebase.auth().signInWithPopup(provider).then(function(result) {
+			// This gives you a Google Access Token. You can use it to access the Google API.
+			var token = result.credential.accessToken;
+			// The signed-in user info.
+			var user = result.user;
+			localStorage.setItem('user', JSON.stringify(user));
+			localStorage.setItem('token', token);
+
+			firebase.auth().currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
+				fetch('http://localhost:5000/users/login', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						'idToken' : idToken
+					})
+				}).then((response) => response.json()).then((json) => {
+					console.log(json);
+					if(json.success){
+						localStorage.setItem('admin', json.token);
+					}
+					window.location.reload()
+				});
+			});
+
+		}).catch(function(error) {
+			alert("Ocoreu uma falha");
+		});
+	}
+
 	rightMenu(){
 		var rightMenu;
 		const user = JSON.parse(localStorageAuth.thereIsUser());
@@ -115,7 +161,7 @@ class App extends Component {
 			rightMenu = (
 							<ul className="navbar-nav  mt-2 mt-lg-0">	
 								<li className="nav-item">
-									<Link to="/login" className="nav-link"><span className="my-nav-item">Login</span><span className="sr-only" >(current)</span></Link>
+								<a className="nav-link" onClick={this.handleGoogleLogin}>Login</a>
 								</li>
 							</ul>
 						);

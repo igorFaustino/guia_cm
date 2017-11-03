@@ -1,6 +1,6 @@
 function thereIsUser(){
 	const user = localStorage.getItem('user')
-	if(user){
+	if(user != undefined){
 		return user;
 	} else {
 		return false;

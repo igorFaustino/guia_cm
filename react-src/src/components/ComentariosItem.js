@@ -24,23 +24,28 @@ class ComentariosItem extends Component {
 		}
 
 		return (
-				<Container>
+				<Container className="comentario">
 					<Row>
-						<Col md="6" className="img-eventos">
-							{deleteButton}
-							<img src={this.props.comentario.userImage} className="rounded" style={{
-								height: '50%',
-    							width: '10%',
-							}}></img>
-							<h5>{this.props.comentario.user}</h5>
+						<Col md="3" className="img-eventos">
+							<Row>
+								<Col md="6">
+									{deleteButton}
+								</Col>
+								<Col md="6">
+									<img src={this.props.comentario.userImage} className="rounded" style={{
+										height: '40%',
+										width: '50%',
+									}}></img>
+									<h5>{this.props.comentario.user}</h5>
+								</Col>
+							</Row>
 						</Col>
-						<Col md="6">
+						<Col md="9">
 							<Container>
 								<p>{this.props.comentario.comentario}</p>
 							</Container>
 						</Col>
 					</Row>
-					<hr/>
 				</Container>
 			);
 	}

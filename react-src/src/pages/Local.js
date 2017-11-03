@@ -7,6 +7,8 @@ import Comentarios from '../components/Comentarios'
 
 import FormLocals from '../components/FormLocals.js';
 
+const localStorageAuth = require('../util/localHostAuth.js');
+
 
 class Local extends Component {
 	constructor(){
@@ -69,6 +71,11 @@ class Local extends Component {
 	}
 
 	render() {
+		let editButton;
+		if(localStorageAuth.thereIsAdim()){
+			editButton = <Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>;
+		}
+
 		return (
 			<Container className="text-center">
 				<h1 className="large-space" >{this.state.local.nome}</h1>
@@ -93,7 +100,7 @@ class Local extends Component {
 					</Container>
 				</div>
 				<hr/>
-				<Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>
+				{editButton}
 				<Container>
 					<Comentarios />
 				</Container>
