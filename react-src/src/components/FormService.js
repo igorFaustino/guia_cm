@@ -51,6 +51,13 @@ class FormService extends Component {
 	}
 
 	handleSubmit(e){
+		e.preventDefault();
+		var servico = {
+			nome: this.state.nome,
+			info: this.state.info,
+			telefone: this.state.tel	
+		}
+		this.props.handleSubmit(servico);
 
 	}
 
@@ -83,7 +90,7 @@ class FormService extends Component {
 					<Input placeholder="telefone do serviço" value={this.state.tel} onChange={this.handleTelChange} className={validationTel}/>
 				</InputGroup>
 				<div className="text-center">
-					<Button color="success" disabled={!this.nome || !this.info || !this.tel } >Adicionar</Button>
+					<Button color="success" disabled={!this.nome || !this.info || !this.tel } onClick={this.handleSubmit} >Adicionar</Button>
 				</div>
 			</form>
 		);

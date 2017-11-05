@@ -14,7 +14,8 @@ class ListaServicos extends Component {
 			modal:false
 		}
 		this.toggle = this.toggle.bind(this);
-		this.getServicosFromDatabase = this.getServicosFromDatabase.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	componentWillMount(){
@@ -34,6 +35,70 @@ class ListaServicos extends Component {
 		});
 	}
 
+	saveOnDatabase(servico){
+		servico.categoria = this.props.match.params.servico;
+		fetch('http://localhost:5000/api/service',{
+			method: 'POST',
+			headers:{
+				'Content-Type': 'application/json',
+				'Authorization': localStorage.getItem('admin'),
+			},
+			body: JSON.stringify({
+				'nome' : servico.nome, 
+				'telefone' : servico.telefone,
+				'info' : servico.info,
+				'categoria' : servico.categoria
+			})
+		}).then((response) => response.json()).then((json) => {
+			if(json.success){
+				alert("daora");
+				this.setState({
+					servico: this.state.servico.concat(servico),
+				});
+			}
+			else{
+				alert("deu ruim");
+			}
+		});
+	}
+
+	deleteFromDatabase(deletedServico){
+		fetch('http://localhost:5000/api/service/' + deletedServico._id, {
+			method: 'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
+				'Authorization': localStorage.getItem('admin'),
+			}
+		}).then((response) => response.json()).then((json) => {
+			if(json.success){
+				alert("daora");
+				let servico = this.state.servico;
+				servico = servico.filter((servico) => {
+					if(servico._id !== deletedServico._id){
+						return true;
+					}
+					return false;
+				});
+				this.setState({
+					servico: servico,
+				});
+			}
+			else{
+				alert("deu ruim");
+			}
+		});	
+	}
+
+	handleSubmit(servico){
+		this.saveOnDatabase(servico);
+		this.toggle();
+	}
+
+	handleDelete(servico){
+		this.deleteFromDatabase(servico);
+	}
 
 	toggle() {
 		this.setState({
@@ -47,7 +112,7 @@ class ListaServicos extends Component {
 		if(this.state.servico){
 			servicoItens = this.state.servico.map(servico => {
 				return (
-					<ServicoItem key={servico.nome} servico={servico}/>
+					<ServicoItem key={servico.nome} servico={servico} delete={this.handleDelete}/>
 				);
 			});
 		}
@@ -68,7 +133,7 @@ class ListaServicos extends Component {
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Adicionar Servico</ModalHeader>
 					<ModalBody>
-						<FormService/>
+						<FormService handleSubmit={this.handleSubmit} />
 					</ModalBody>
 				</Modal>
 			</Container>
