@@ -15,22 +15,50 @@ class Local extends Component {
 		super();
 		this.state = {
 			modal: false,
-			local: {
-				nome: 'Local',
-				desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-				local: 'Av blabal bla bla, 124',
-				horario: '12:00 - 22:00',
-			}
+			local: {},
+			cometario: {},
+			comentarios: []
 		}
-
 		this.toggle = this.toggle.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
 		this.saveOnDatabase = this.saveOnDatabase.bind(this);
+		this.saveCommentsOnDatabase = this.saveCommentsOnDatabase.bind(this);
+		this.getLocalsFromDatabase = this.getLocalsFromDatabase.bind(this);
+		this.getCommentsFromDatabase = this.getCommentsFromDatabase.bind(this);
+	}
+
+	componentWillMount(){
+		this.getLocalsFromDatabase();
+		this.getCommentsFromDatabase();
 	}
 
 	getLocalsFromDatabase(){
-
+		fetch('http://localhost:5000/api/local/' + this.props.match.params.id, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then((response) => response.json()).then((json) => {
+			this.setState({
+				local: json
+			});
+		});
 	}
+
+	getCommentsFromDatabase = () => {
+		fetch('http://localhost:5000/api/comment/' + this.props.match.params.id, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		}).then((response) => response.json()).then((json) => {
+			this.setState({
+				comentarios: json,
+			});
+		});
+	}
+
 
 	saveOnDatabase(){
 		let local = {
@@ -56,18 +84,78 @@ class Local extends Component {
 		});
 	}
 
+	saveCommentsOnDatabase(comentario){
+		let user = localStorage.getItem('user');
+		user = JSON.parse(user);
+		let comment = {
+			user: user.displayName,
+			local: this.props.match.params.id,
+			userImage: user.photoURL,
+			comentario: comentario,
+		}
+		fetch('http://localhost:5000/api/comment/' + this.props.match.params.id, {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(comment)
+		}).then((response) => {
+			if(response.success){
+				alert("show");
+				this.setState({
+					comentarios: this.state.comentarios.concat(response.comment)
+				})
+			} else {
+				alert("droga");
+			}
+		});
+	}
+
 	toggle() {
 		this.setState({
 			modal: !this.state.modal
 		});
 	}
 
-	handleSubmit(local){
-		this.setState({
-			local: local
-		});
-		this.toggle();
+	handleSubmit(cometario){
+		this.saveCommentsOnDatabase(cometario);
+	}
+
+	handleCommentSubmit(cometario){
+		this.saveCommentsOnDatabase(cometario);
+		// this.toggle();
 		// this.saveOnDatabase();
+	}
+
+	deleteFromDatabase(deletedComment){
+		fetch('http://localhost:5000/api/local/' + deletedComment._id, {
+			method: 'DELETE',
+			// mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
+				'Authorization': localStorage.getItem('admin'),
+			},
+		}).then((response) => response.json()).then((json) => {
+			// console.log(json);
+			if(json.success){
+				alert("show");
+				let comentarios = this.state.comentarios;
+				comentarios = comentarios.filter((comentario)=>{
+					if(comentario._id !== deletedComment._id){
+						return true;
+					}
+					return false;
+				});
+				this.setState({
+					comentarios: comentarios,
+				});
+			} else {
+				alert("droga");
+			}
+		});
 	}
 
 	render() {
@@ -75,7 +163,6 @@ class Local extends Component {
 		if(localStorageAuth.thereIsAdim()){
 			editButton = <Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>;
 		}
-
 		return (
 			<Container className="text-center">
 				<h1 className="large-space" >{this.state.local.nome}</h1>
@@ -102,7 +189,7 @@ class Local extends Component {
 				<hr/>
 				{editButton}
 				<Container>
-					<Comentarios />
+					<Comentarios comentarios={this.state.comentarios} handleSubmit={this.handleCommentSubmit} />
 				</Container>
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Editar Local</ModalHeader>

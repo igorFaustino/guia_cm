@@ -211,7 +211,7 @@ class App extends Component {
 						<Route exact path="/servicos/:servico" component={ListaServicos}/>
 						<Route path="/eventos" component={ListaEventos}/>
 						<Route path="/login" component={Login}/>
-						<Route path="/local/:nome" component={Local}/>
+						<Route path="/local/:id" component={Local}/>
 						<Route path="/profile" component={Perfil}/>
 						
 					</Container>

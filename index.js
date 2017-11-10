@@ -53,11 +53,13 @@ var locals = require('./routes/locals');
 var events = require('./routes/events');
 var services = require('./routes/services');
 var admin = require('./routes/admin');
+var comments = require('./routes/comment');
 
 app.use('/api/maps', maps);
 app.use('/api', locals);
 app.use('/api', events);
 app.use('/api', services);
+app.use('/api', comments);
 app.use('/users', admin);
 
 

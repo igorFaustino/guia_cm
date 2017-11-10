@@ -24,7 +24,7 @@ class LocalsItem extends Component {
 	}
 
 	render() {
-		let link = "/local/" + this.props.local.nome.toLowerCase();
+		let link = "/local/" + this.props.local._id;
 
 		let deleteButton;
 		if(localStorageAuth.thereIsAdim()){

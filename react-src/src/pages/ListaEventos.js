@@ -118,7 +118,7 @@ class ListaEventos extends Component {
 	render(){
 		let addButton;
 		if(localStorageAuth.thereIsAdim()){
-			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;
+			addButton = <Button className="circle-btn btn-lg" 	 >+</Button>;
 		}
 
 		let eventos;

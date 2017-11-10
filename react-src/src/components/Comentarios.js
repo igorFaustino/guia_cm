@@ -3,36 +3,34 @@ import ComentariosItem from '../components/ComentariosItem';
 import { Row, Container, InputGroup, Form } from 'reactstrap';
 
 class Comentarios extends Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
-			comentarios: [
-				{
-					_id: "mnbvmzcbmvx",
-					userImage: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
-					user: 'Igor Faustino',
-					comentario: "Muito Legal"
-				},
-				{
-					_id: "xvzxczv",
-					userImage: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
-					user: 'Igor Faustino',
-					comentario: "Muito Legal"
-				},
-			]
+			comentario: '',
+		}
+		var comentario;
+		this.handleComentarioChange = this.handleComentarioChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	
+	handleComentarioChange(e){
+		this.setState({comentario: e.target.value});
+		if(e.target.value === ''){
+			this.comentario = false;
+		} else {
+			this.comentario = true;
 		}
 	}
 
-	componentWillMount(){
-		this.setState({
-			categories: [],
-		});
+	handleSubmit(e){
+		// e.preventDefault();
+		this.props.handleSubmit(this.state.comentario);
 	}
-	
+
 	render() {
-		let comentarios;
-		if(this.state.comentarios){
-			comentarios = this.state.comentarios.map(comentario => {
+		let comentarios = this.props.comentarios;
+		if(comentarios){
+			comentarios = comentarios.map(comentario => {
 				return(
 					<ComentariosItem key={comentario._id} comentario={comentario} delete={this.handleDelete}/>
 				);
@@ -45,9 +43,9 @@ class Comentarios extends Component {
 				{comentarios}
 				<Form action="">
 					<InputGroup className="small-space">
-						<textarea placeholder="Novo comentario..." rows="8" className="form-control"></textarea>
+						<textarea placeholder="Novo comentario..." rows="8" className="form-control" value={this.state.comentario} onChange={this.handleComentarioChange}></textarea>
 					</InputGroup>
-					<button className="btn btn-large btn-block btn-primary">Comentar</button>
+					<button className="btn btn-large btn-block btn-primary" type="submit" onClick={this.handleSubmit}>Comentar</button>
 				</Form>
 				
 			</Container>

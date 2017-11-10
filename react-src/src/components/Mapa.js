@@ -21,7 +21,6 @@ export class Mapa extends Component {
 	}
 }
 
-{/* API TEMPORARIA */}
 export default GoogleApiWrapper({
 	apiKey: mapaConfig.apiKey
 })(Mapa)
