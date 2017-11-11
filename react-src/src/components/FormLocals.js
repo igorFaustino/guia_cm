@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Col, Container, Button , InputGroup, Input} from 'reactstrap';
 var classNames = require('classnames');
 
+const mapaConfig = require('../config/mapsConfig.js');
+
 class FormLocals extends Component {
 	constructor(){
 		super();
@@ -74,13 +76,23 @@ class FormLocals extends Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-		var local = {
+		let string = this.state.local.replace(/\s/g, "+") + "+campo+mourao+parana";
+		console.log(string);
+		fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + string + "&key=" + mapaConfig.apiKey)
+		.then((response) =>
+		response.json())
+		.then((json) =>
+		{
+			var local = {
 			nome: this.state.nome,
 			descricao: this.state.desc,
 			endereco: this.state.local,
-			horario: this.state.horario
-		}
+			horario: this.state.horario,			
+			cordenadas:json.results[0].geometry.location
+			};
+		console.log(local);
 		this.props.handleSubmit(local);
+		});
 	}
 
 	render(){
@@ -108,13 +120,13 @@ class FormLocals extends Component {
 		return(
 			<form >
 				<InputGroup className={"small-space"}>
-					<Input placeholder="Nome do Local" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text"/>
+					<Input placeholder="Nome" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text"/>
 				</InputGroup>
 				<InputGroup className="small-space">
-					<textarea placeholder="Descricao do Local" rows="8" value={this.state.desc} onChange={this.handleDescChange} className={validationDesc}></textarea>
+					<textarea placeholder="Descrição" rows="8" value={this.state.desc} onChange={this.handleDescChange} className={validationDesc}></textarea>
 				</InputGroup>
 				<InputGroup className="small-space">
-					<Input placeholder="Local do Evento" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal} />
+					<Input placeholder="Endereço" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal} />
 				</InputGroup>
 				<InputGroup className="small-space">
 					<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />

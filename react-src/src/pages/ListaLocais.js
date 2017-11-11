@@ -56,8 +56,9 @@ class ListaLocais extends Component {
 			},
 			body: JSON.stringify({
 				'nome': local.nome,
-				'descricao': local.desc,
-				'endereco': local.local,
+				'cordenadas': local.cordenadas,
+				'descricao': local.descricao,
+				'endereco': local.endereco,
 				'horario': local.horario
 			})
 		}).then((response) => response.json()).then((json) => {
