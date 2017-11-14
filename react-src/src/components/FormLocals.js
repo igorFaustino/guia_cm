@@ -8,6 +8,8 @@ import ImageImport from './ImageImport';
 const config = require("../config/cloudinaryConfig")
 const classNames = require('classnames');
 
+const mapaConfig = require('../config/mapsConfig.js');
+
 class FormLocals extends Component {
 	constructor() {
 		super();
@@ -162,7 +164,7 @@ class FormLocals extends Component {
 					<Input placeholder="Nome do Local" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text" />
 				</InputGroup>
 				<InputGroup className="small-space">
-					<Input placeholder="Local do Evento" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal} />
+					<Input placeholder="Endereço" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal} />
 				</InputGroup>
 				<InputGroup className="small-space">
 					<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />
