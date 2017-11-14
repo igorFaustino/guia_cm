@@ -48,7 +48,6 @@ class Login extends Component {
 						'idToken' : idToken
 					})
 				}).then((response) => response.json()).then((json) => {
-					console.log(json);
 					if(json.success){
 						localStorage.setItem('admin', json.token);
 					}

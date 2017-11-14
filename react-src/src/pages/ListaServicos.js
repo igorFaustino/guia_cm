@@ -112,7 +112,7 @@ class ListaServicos extends Component {
 		if(this.state.servico){
 			servicoItens = this.state.servico.map(servico => {
 				return (
-					<ServicoItem key={servico.nome} servico={servico} delete={this.handleDelete}/>
+					<ServicoItem key={servico._id} servico={servico} delete={this.handleDelete}/>
 				);
 			});
 		}

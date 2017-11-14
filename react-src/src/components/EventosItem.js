@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Col, Row, Button } from 'reactstrap';
 
 import img from '../img/rockinrio.jpg';
+import noImage from '../img/noImage.jpg';
 
 
 const localStorageAuth = require('../util/localHostAuth.js');
@@ -28,7 +29,7 @@ class EventosItem extends Component {
 					<Row>
 						<Col md="6" className="img-eventos">
 							{deleteButton}
-							<img src={img} className="rounded"></img>
+							<img src={this.props.evento.image || noImage} className="rounded"></img>
 						</Col>
 						<Col md="6">
 							<Container>

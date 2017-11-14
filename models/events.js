@@ -13,6 +13,9 @@ var LocalSchema = mongoose.Schema({
 	},
 	link: {
 		type: String
+	},
+	image: {
+		type: String
 	}
 });
 

@@ -48,7 +48,8 @@ class ListaEventos extends Component {
 				'titulo' : evento.titulo,
 				'local' : evento.local,
 				'data' : evento.data,
-				'link' : evento.link
+				'link' : evento.link,
+				'image': evento.image
 			})
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
@@ -74,7 +75,6 @@ class ListaEventos extends Component {
 				'Authorization': localStorage.getItem('admin'),
 			}
 		}).then((response) => response.json()).then((json) => {
-			console.log(json);
 			if(json.success){
 				alert("daora");
 				let eventos = this.state.eventos;
@@ -118,7 +118,7 @@ class ListaEventos extends Component {
 	render(){
 		let addButton;
 		if(localStorageAuth.thereIsAdim()){
-			addButton = <Button className="circle-btn btn-lg" 	 >+</Button>;
+			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;
 		}
 
 		let eventos;

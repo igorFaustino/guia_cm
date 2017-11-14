@@ -42,7 +42,6 @@ class Perfil extends Component {
 				'email': admin.email,
 			})
 		}).then((response) => response.json()).then((json) => {
-			console.log(json);
 			if(json.success){
 				alert("show");
 			} else {

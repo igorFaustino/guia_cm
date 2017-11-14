@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 // import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
+import noImage from '../img/noImage.jpg';
 import Mapa from '../components/Mapa.js'
 import Comentarios from '../components/Comentarios'
 
@@ -139,7 +140,6 @@ class Local extends Component {
 				'Authorization': localStorage.getItem('admin'),
 			},
 		}).then((response) => response.json()).then((json) => {
-			// console.log(json);
 			if(json.success){
 				alert("show");
 				let comentarios = this.state.comentarios;
@@ -168,7 +168,7 @@ class Local extends Component {
 				<h1 className="large-space" >{this.state.local.nome}</h1>
 				<Row>
 					<Col md="6">
-						<img src={coffe} alt="Foto do local" className="figure-img img-fluid rounded"></img>
+						<img src={this.state.local.image || noImage} alt="Foto do local" className="figure-img img-fluid rounded"></img>
 					</Col>
 					<Col md="6">
 						<Container className="margin">

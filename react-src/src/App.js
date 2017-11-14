@@ -126,7 +126,6 @@ class App extends Component {
 						'idToken' : idToken
 					})
 				}).then((response) => response.json()).then((json) => {
-					console.log(json);
 					if(json.success){
 						localStorage.setItem('admin', json.token);
 					}
@@ -143,7 +142,6 @@ class App extends Component {
 		var rightMenu;
 		const user = JSON.parse(localStorageAuth.thereIsUser());
 		if(user){
-			console.log(user);
 			rightMenu = (	
 							<ul className="navbar-nav  mt-2 mt-lg-0">
 								{/* <span><img src={user.photoURL} alt="" className="img user-img rounded-circle"/></span> */}

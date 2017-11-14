@@ -20,6 +20,7 @@ router.post('/event', passport.authenticate('jwt', { session: false}), function 
 		data: req.body.data,
 		local: req.body.local,
 		link: req.body.link,
+		image: req.body.image,
 	});
 
 	Event.addEvent(newEvent, function (err, event) {

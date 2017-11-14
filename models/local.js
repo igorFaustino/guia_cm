@@ -21,7 +21,7 @@ var LocalSchema = mongoose.Schema({
 	descricao: {
 		type: String
 	},
-	icon: {
+	image: {
 		type: String
 	},
 	horario: {
@@ -59,7 +59,7 @@ module.exports.updateLocal = function (updatedLocal, callback){
 			local.cordenadas = updatedLocal.cordenadas;
 			local.endereco = updatedLocal.endereco;
 			local.descricao = updatedLocal.descricao;
-			local.icon = updatedLocal.icon;
+			local.image = updatedLocal.image;
 			local.horario = updatedLocal.horario;
 			local.categoria = updatedLocal.categoria;
 			local.save(callback);

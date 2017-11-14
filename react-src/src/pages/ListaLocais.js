@@ -58,10 +58,10 @@ class ListaLocais extends Component {
 				'nome': local.nome,
 				'descricao': local.desc,
 				'endereco': local.local,
-				'horario': local.horario
+				'horario': local.horario,
+				'image': local.image
 			})
 		}).then((response) => response.json()).then((json) => {
-			console.log(json);
 			if(json.success){
 				this.setState({
 					locals: this.state.locals.concat(json.local),
@@ -85,7 +85,6 @@ class ListaLocais extends Component {
 				'Authorization': localStorage.getItem('admin'),
 			},
 		}).then((response) => response.json()).then((json) => {
-			console.log(json);
 			if(json.success){
 				alert("show");
 				let locals = this.state.locals;

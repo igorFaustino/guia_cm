@@ -35,7 +35,7 @@ app.use(cors());
 var port = 5000;
 
 // Set Static Folder 
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, 'react-src/build'))); 
 
 // Body Parser MW 
 app.use(bodyParser.json()); 

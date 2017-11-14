@@ -26,7 +26,6 @@ router.get('/local/:id', function (req, res) {
 // Cadastrar um novo local.
 router.post('/local', passport.authenticate('jwt', { session: false}), function (req, res) {;
 	let newLocal = new Local(req.body);
-
 	Local.addLocal(newLocal, function (err, local) {
 		if (err){
 			res.json({success: false, msg: 'Falha ao adicionar Local'})
