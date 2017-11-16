@@ -17,8 +17,8 @@ router.get('/admin', function (req, res) {
 });
 
 // Retorna um admin
-router.get('/admin/:uid', function (req, res){
-	Admin.getAdminByEmail(req.params.uid, function (err, admin){
+router.get('/admin/:email', function (req, res){
+	Admin.getAdminByEmail(req.params.email, function (err, admin){
 		if (err){
 			res.send(err);
 		}
@@ -65,7 +65,7 @@ router.post('/login', function (req, res) {
 	adminFireBase.auth().verifyIdToken(idToken).then(decodedToken => {
 		uid = decodedToken.user_id;
 		email = decodedToken.email;
-		Admin.getAdmin(uid, email, function (err, admin){
+		Admin.getAdmin(email, function (err, admin){
 			if (err){
 				res.send(err);
 			}
