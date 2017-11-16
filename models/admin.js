@@ -6,10 +6,6 @@ var LocalSchema = mongoose.Schema({
 		type: String,
 		require: true
 	},
-	uid: {
-		type: String,
-		require: true
-	}
 });
 
 module.exports = mongoose.model('Admin', LocalSchema);
@@ -22,7 +18,6 @@ module.exports.getAdminByID = function (id, callback){
 // Pega um unico admin
 module.exports.getAdmin = function (uid, email, callback) {
 	Admin.findOne({
-		uid: uid,
 		email: email
 	}, callback);
 }
