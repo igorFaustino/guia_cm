@@ -56,7 +56,6 @@ class Comentarios extends Component {
 				<h5>Comentarios</h5>
 				{comentarios}
 				{formComentario}
-
 			</Container>
 		);
 	}
