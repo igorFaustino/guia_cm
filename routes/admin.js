@@ -65,7 +65,7 @@ router.post('/login', function (req, res) {
 	adminFireBase.auth().verifyIdToken(idToken).then(decodedToken => {
 		uid = decodedToken.user_id;
 		email = decodedToken.email;
-		Admin.getAdmin(email, function (err, admin){
+		Admin.getAdmin(uid, email, function (err, admin){
 			if (err){
 				res.send(err);
 			}
