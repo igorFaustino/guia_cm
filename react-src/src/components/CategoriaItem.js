@@ -16,7 +16,9 @@ class CategoriaItem extends Component {
 				<Link to={link} className="link">
 				<Container className="text-center">
 					<div>
-						<img src={this.props.category.img} className="figure-img img-fluid rounded format"/>
+						<img src={this.props.category.img} className="figure-img img-fluid rounded format" style={{
+							maxHeight: 150
+						}}/>
 					</div>
 					<p>{this.props.category.nome}</p>
 				</Container>
