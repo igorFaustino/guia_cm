@@ -12,7 +12,7 @@ class CategoriaItem extends Component {
 	render() {
 		let link = this.props.link + this.props.category.nome.toLowerCase();
 		return (
-			<Col md="4">
+			<Col lg="3" md="4" sm="6" xs="12">
 				<Link to={link} className="link">
 				<Container className="text-center">
 					<div>

@@ -35,7 +35,12 @@ class LocalsItem extends Component {
 			<Col xs="12" sm="6" md="4">
 				<figure className="figure">
 					<Link to={link} className="link">
-						<img src={this.props.local.image || noImage} alt="..." className="figure-img img-fluid rounded"></img>
+						<img src={this.props.local.image || noImage} alt="..." className="figure-img img-fluid rounded" style={{
+							maxWidth: 300,
+							minWidth: 200,
+							maxHeight: 200,
+							minHeight: 200,
+						}}></img>
 					</Link>
 					<figcaption className="figure-caption">
 						<Link to={link} className="link">
