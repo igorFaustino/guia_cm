@@ -26,7 +26,7 @@ class ComentariosItem extends Component {
 		return (
 				<Container className="comentario">
 					<Row>
-						<Col md="3" className="img-eventos">
+						<Col md="3" xs="12" className="img-eventos">
 							<Row>
 								<Col md="6">
 									{deleteButton}
@@ -40,7 +40,7 @@ class ComentariosItem extends Component {
 								</Col>
 							</Row>
 						</Col>
-						<Col md="9">
+						<Col md="9" xs="12">
 							<Container>
 								<p>{this.props.comentario.comentario}</p>
 							</Container>

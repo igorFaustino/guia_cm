@@ -29,7 +29,12 @@ class EventosItem extends Component {
 					<Row>
 						<Col md="6" className="img-eventos">
 							{deleteButton}
-							<img src={this.props.evento.image || noImage} className="rounded"></img>
+							<img src={this.props.evento.image || noImage} className="rounded figure-img img-fluid" style={{
+							maxWidth: 300,
+							minWidth: 200,
+							maxHeight: 200,
+							minHeight: 200,
+						}}></img>
 						</Col>
 						<Col md="6">
 							<Container>
