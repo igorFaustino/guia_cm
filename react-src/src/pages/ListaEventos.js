@@ -116,6 +116,13 @@ class ListaEventos extends Component {
 	}
 
 	render(){
+		this.state.eventos.sort(function(a,b){
+			let aa = a.data.split("/");
+			let dataa = new Date(aa[2] + "-" + aa[1] + "-" + aa[0]);
+			let bb = b.data.split("/");
+			let datab = new Date(bb[2] + "-" + bb[1] + "-" + bb[0]);
+			return dataa - datab;
+		});
 		let addButton;
 		if(localStorageAuth.thereIsAdim()){
 			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;

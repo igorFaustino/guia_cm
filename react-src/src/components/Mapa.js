@@ -9,12 +9,13 @@ const mapaConfig = require('../config/mapsConfig.js');
 const EstiloMapa={ height:'70%', width:'60%'};
 
 export class Mapa extends Component {
+	
 	render() {
 		return (
-			<Map google={this.props.google} zoom={14} initialCenter= {{ lat: -24.043411, lng:-52.378299 }} className="map">
+			<Map google={this.props.google} zoom={14} initialCenter= {this.props.coordenadas[0]} className="map">
 				{/* marcador tem posição inicial igual a posição inicial do mapa
 				mas pode ser modificada usando position*/}
-				<Marker position = {{ lat: -24.060904, lng: -52.386995 }} onClick={this.onMarkerClick}
+				<Marker position = {this.props.coordenadas[0]} onClick={this.onMarkerClick}
 				name={'Current location'} />
 			</Map>
 		);
