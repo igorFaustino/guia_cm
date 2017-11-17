@@ -65,7 +65,7 @@ class Local extends Component {
 		let local = {
 			nome: this.state.local.nome,
 			descricao: this.state.local.desc,
-			endereco: this.state.local.local,
+			endereco: this.state.local.endereco,
 			horario: this.state.local.horario
 		}
 		fetch('https://localhost:5000/local/', {
@@ -176,7 +176,7 @@ class Local extends Component {
 					<Col md="6">
 						<Container className="margin">
 							<p>{this.state.local.desc}</p>
-							<p>{this.state.local.local}</p>
+							<p>{this.state.local.endereco}</p>
 							<p>{this.state.local.horario}</p>
 							<Button color="primary" size="lg" block disabled>Acessar site</Button>
 						</Container>

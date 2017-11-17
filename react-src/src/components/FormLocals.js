@@ -41,7 +41,7 @@ class FormLocals extends Component {
 			this.setState({
 				nome: this.props.value.nome,
 				desc: this.props.value.desc,
-				local: this.props.value.local,
+				local: this.props.value.endereco,
 				horario: this.props.value.horario,
 				edit: true
 			});

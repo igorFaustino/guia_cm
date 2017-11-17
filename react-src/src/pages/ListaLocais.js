@@ -58,7 +58,7 @@ class ListaLocais extends Component {
 			body: JSON.stringify({
 				'nome': local.nome,
 				'descricao': local.desc,
-				'endereco': local.local,
+				'endereco': local.endereco,
 				'horario': local.horario,
 				'image': local.image,
 				'cordenadas': local.coordenadas,
