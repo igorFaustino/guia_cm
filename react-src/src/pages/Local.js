@@ -163,6 +163,9 @@ class Local extends Component {
 		if(localStorageAuth.thereIsAdim()){
 			editButton = <Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>;
 		}
+		if(this.state.local.cordenadas == null){
+			return null;
+		}
 		return (
 			<Container className="text-center">
 				<h1 className="large-space" >{this.state.local.nome}</h1>
@@ -183,7 +186,7 @@ class Local extends Component {
 					<hr className="large-space" />
 					<h3 className="large-space">Como chegar</h3>
 					<Container className="align-center large-space map">
-						<Mapa/>
+						<Mapa coordenadas={this.state.local.cordenadas}/>
 					</Container>
 				</div>
 				<hr/>

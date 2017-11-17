@@ -124,17 +124,29 @@ class FormLocals extends Component {
 				// callback(err, null)
 				return
 			}
-
-			var local = {
-				nome: this.state.nome,
-				descricao: this.state.desc,
-				endereco: this.state.local,
-				horario: this.state.horario,
-				image: res.body.url,
-			}
-			this.props.handleSubmit(local);
-		})
+			let string = this.state.local.replace(/\s/g, "+") + "+campo+mourao+parana";
+			console.log(string);
+			fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + string + "&key=" + mapaConfig.apiKey)
+			.then((response) =>
+			response.json())
+			.then((json) =>
+			{
+				console.log(res.body.url);
+				console.log(json.results[0]);
+				var local = {
+					nome: this.state.nome,
+					descricao: this.state.desc,
+					endereco: this.state.local,
+					horario: this.state.horario,
+					coordenadas: json.results[0].geometry.location,
+					image: res.body.url,
+				}
+				this.props.handleSubmit(local);
+			});
+		});
 	}
+
+
 
 	render() {
 		var validationNome = classNames({

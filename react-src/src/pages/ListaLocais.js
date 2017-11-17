@@ -41,6 +41,7 @@ class ListaLocais extends Component {
 			this.setState({
 				locals: json
 			});
+			console.log(json);
 		});
 	}
 
@@ -59,7 +60,8 @@ class ListaLocais extends Component {
 				'descricao': local.desc,
 				'endereco': local.local,
 				'horario': local.horario,
-				'image': local.image
+				'image': local.image,
+				'cordenadas': local.coordenadas,
 			})
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
