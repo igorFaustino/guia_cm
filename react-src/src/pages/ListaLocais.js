@@ -39,7 +39,6 @@ class ListaLocais extends Component {
 				this.setState({
 					locals: response.body
 				});
-				console.log(response);
 			});
 		// fetch('http://localhost:5000/api/locals', {
 		// 	method: 'GET',

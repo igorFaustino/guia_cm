@@ -176,26 +176,45 @@ class FormLocals extends Component {
 			'is-invalid': !this.horario && this.horario != undefined,
 		});
 
-		return (
-			<form >
-				<InputGroup className={"small-space"}>
-					<Input placeholder="Nome do Local" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text" />
-				</InputGroup>
-				<InputGroup className="small-space">
-					<Input placeholder="Endereço" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal} />
-				</InputGroup>
-				<InputGroup className="small-space">
-					<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />
-				</InputGroup>
-				<InputGroup className="small-space">
-					<textarea placeholder="Descricao do Local" rows="9" value={this.state.desc} onChange={this.handleDescChange} className={validationDesc}></textarea>
-				</InputGroup>
-				<ImageImport handleImage={this.handleImageChange} />
-				<div className="text-center">
-					<input className="btn btn-lg btn-success" type="submit" value="Submit" onClick={this.handleSubmit} disabled={(!this.nome || !this.desc || !this.local || !this.horario) && !this.state.edit} />
-				</div>
-			</form >
-		);
+		if (!this.props.alter) {
+			return (
+				<form >
+					<InputGroup className={"small-space"}>
+						<Input placeholder="Nome do Local" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text" />
+					</InputGroup>
+					<InputGroup className="small-space">
+						<Input placeholder="Endereço" value={this.state.local} onChange={this.handleLocalChange} className={validationLocal} />
+					</InputGroup>
+					<InputGroup className="small-space">
+						<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />
+					</InputGroup>
+					<InputGroup className="small-space">
+						<textarea placeholder="Descricao do Local" rows="9" value={this.state.desc} onChange={this.handleDescChange} className={validationDesc}></textarea>
+					</InputGroup>
+					<ImageImport handleImage={this.handleImageChange} />
+					<div className="text-center">
+						<input className="btn btn-lg btn-success" type="submit" value="Submit" onClick={this.handleSubmit} disabled={(!this.nome || !this.desc || !this.local || !this.horario) && !this.state.edit} />
+					</div>
+				</form >
+			);
+		} else {
+			return (
+				<form >
+					<InputGroup className={"small-space"}>
+						<Input placeholder="Nome do Local" value={this.state.nome} onChange={this.handleNomeChange} className={validationNome} type="text" />
+					</InputGroup>
+					<InputGroup className="small-space">
+						<Input placeholder="Horario de funcionamento" value={this.state.horario} onChange={this.handleHorarioChange} className={validationHorario} />
+					</InputGroup>
+					<InputGroup className="small-space">
+						<textarea placeholder="Descricao do Local" rows="9" value={this.state.desc} onChange={this.handleDescChange} className={validationDesc}></textarea>
+					</InputGroup>
+					<div className="text-center">
+						<input className="btn btn-lg btn-success" type="submit" value="Submit" onClick={this.handleSubmit} disabled={(!this.nome || !this.desc || !this.horario) && !this.state.edit} />
+					</div>
+				</form >
+			);
+		}
 
 	}
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import superagent from 'superagent'
 
-// import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
 import noImage from '../img/noImage.jpg';
 import Mapa from '../components/Mapa.js'
@@ -14,7 +13,7 @@ const localStorageAuth = require('../util/localHostAuth.js');
 
 
 class Local extends Component {
-	constructor(){
+	constructor() {
 		super();
 		this.state = {
 			modal: false,
@@ -31,12 +30,12 @@ class Local extends Component {
 		this.getCommentsFromDatabase = this.getCommentsFromDatabase.bind(this);
 	}
 
-	componentWillMount(){
+	componentWillMount() {
 		this.getLocalsFromDatabase();
 		this.getCommentsFromDatabase();
 	}
 
-	getLocalsFromDatabase(){
+	getLocalsFromDatabase() {
 		fetch('http://localhost:5000/api/local/' + this.props.match.params.id, {
 			method: 'GET',
 			headers: {
@@ -63,7 +62,7 @@ class Local extends Component {
 	}
 
 
-	saveOnDatabase(local){
+	saveOnDatabase(local) {
 		console.log(local);
 		console.log("HELLOOOOOO")
 		superagent.put('http://localhost:5000/api/local')
@@ -72,7 +71,7 @@ class Local extends Component {
 			.send(local)
 			.end((err, res) => {
 				console.log(res);
-				if(res.body.success){
+				if (res.body.success) {
 					let updatedLocal = this.state.local;
 					updatedLocal.nome = local.nome;
 					updatedLocal.descricao = local.descricao;
@@ -85,24 +84,9 @@ class Local extends Component {
 					alert('DEU RUIM')
 				}
 			})
-		// fetch('http://localhost:5000/api/local', {
-		// 	method: 'PUT',
-		// 	headers: {
-		// 		'Accept': 'application/json',
-		// 		'Content-Type': 'application/json',
-		// 		'Authorization': localStorage.getItem('admin'),
-		// 	},
-		// 	body: JSON.stringify(local)
-		// }).then((response) => {
-		// 	if(response.success){
-		// 		alert("show");
-		// 	} else {
-		// 		alert("droga");
-		// 	}
-		// });
 	}
 
-	saveCommentsOnDatabase(comentario){
+	saveCommentsOnDatabase(comentario) {
 		let user = localStorage.getItem('user');
 		user = JSON.parse(user);
 		let comment = {
@@ -119,7 +103,7 @@ class Local extends Component {
 			},
 			body: JSON.stringify(comment)
 		}).then((response) => {
-			if(response.success){
+			if (response.success) {
 				alert("show");
 				this.setState({
 					comentarios: this.state.comentarios.concat(response.comment)
@@ -136,7 +120,7 @@ class Local extends Component {
 		});
 	}
 
-	handleSubmit(local){
+	handleSubmit(local) {
 		console.log(this.state.local._id);
 		let _local = {
 			_id: this.state.local._id,
@@ -148,16 +132,13 @@ class Local extends Component {
 		this.toggle();
 	}
 
-	handleCommentSubmit(cometario){
+	handleCommentSubmit(cometario) {
 		this.saveCommentsOnDatabase(cometario);
-		// this.toggle();
-		// this.saveOnDatabase();
 	}
 
-	deleteFromDatabase(deletedComment){
+	deleteFromDatabase(deletedComment) {
 		fetch('http://localhost:5000/api/local/' + deletedComment._id, {
 			method: 'DELETE',
-			// mode: 'no-cors',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -165,11 +146,11 @@ class Local extends Component {
 				'Authorization': localStorage.getItem('admin'),
 			},
 		}).then((response) => response.json()).then((json) => {
-			if(json.success){
+			if (json.success) {
 				alert("show");
 				let comentarios = this.state.comentarios;
-				comentarios = comentarios.filter((comentario)=>{
-					if(comentario._id !== deletedComment._id){
+				comentarios = comentarios.filter((comentario) => {
+					if (comentario._id !== deletedComment._id) {
 						return true;
 					}
 					return false;
@@ -185,10 +166,10 @@ class Local extends Component {
 
 	render() {
 		let editButton;
-		if(localStorageAuth.thereIsAdim()){
+		if (localStorageAuth.thereIsAdim()) {
 			editButton = <Button className="btn-lg large-space" color="primary" onClick={this.toggle}>Editar Local</Button>;
 		}
-		if(this.state.local.cordenadas == null){
+		if (this.state.local.cordenadas == null) {
 			return null;
 		}
 		return (
@@ -200,7 +181,7 @@ class Local extends Component {
 					</Col>
 					<Col md="6">
 						<Container className="margin">
-							<p>{this.state.local.desc}</p>
+							<p>{this.state.local.descricao}</p>
 							<p>{this.state.local.endereco}</p>
 							<p>{this.state.local.horario}</p>
 							<Button color="primary" size="lg" block disabled>Acessar site</Button>
@@ -211,10 +192,10 @@ class Local extends Component {
 					<hr className="large-space" />
 					<h3 className="large-space">Como chegar</h3>
 					<Container className="align-center large-space map">
-						<Mapa coordenadas={this.state.local.cordenadas}/>
+						<Mapa coordenadas={this.state.local.cordenadas} />
 					</Container>
 				</div>
-				<hr/>
+				<hr />
 				{editButton}
 				<Container>
 					<Comentarios comentarios={this.state.comentarios} handleSubmit={this.handleCommentSubmit} />
@@ -222,7 +203,7 @@ class Local extends Component {
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Editar Local</ModalHeader>
 					<ModalBody>
-						<FormLocals value={this.state.local} handleSubmit={this.handleSubmit} alter={true}/>
+						<FormLocals value={this.state.local} handleSubmit={this.handleSubmit} alter={true} />
 					</ModalBody>
 				</Modal>
 			</Container>
