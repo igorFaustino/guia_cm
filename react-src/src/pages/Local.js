@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import superagent from 'superagent'
+
 // import noImage from '../img/noImage.jpg';
 import coffe from '../img/cafeteria.jpg';
 import noImage from '../img/noImage.jpg';
@@ -61,28 +63,43 @@ class Local extends Component {
 	}
 
 
-	saveOnDatabase(){
-		let local = {
-			nome: this.state.local.nome,
-			descricao: this.state.local.desc,
-			endereco: this.state.local.endereco,
-			horario: this.state.local.horario
-		}
-		fetch('https://localhost:5000/local/', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Authorization': localStorage.getItem('admin'),
-			},
-			body: JSON.stringify(local)
-		}).then((response) => {
-			if(response.success){
-				alert("show");
-			} else {
-				alert("droga");
-			}
-		});
+	saveOnDatabase(local){
+		console.log(local);
+		console.log("HELLOOOOOO")
+		superagent.put('http://localhost:5000/api/local')
+			.set('Authorization', localStorage.getItem('admin'))
+			.set('Content-Type', 'application/json')
+			.send(local)
+			.end((err, res) => {
+				console.log(res);
+				if(res.body.success){
+					let updatedLocal = this.state.local;
+					updatedLocal.nome = local.nome;
+					updatedLocal.descricao = local.descricao;
+					updatedLocal.horario = local.horario;
+					this.setState({
+						local: updatedLocal
+					})
+					alert('SHOW')
+				} else {
+					alert('DEU RUIM')
+				}
+			})
+		// fetch('http://localhost:5000/api/local', {
+		// 	method: 'PUT',
+		// 	headers: {
+		// 		'Accept': 'application/json',
+		// 		'Content-Type': 'application/json',
+		// 		'Authorization': localStorage.getItem('admin'),
+		// 	},
+		// 	body: JSON.stringify(local)
+		// }).then((response) => {
+		// 	if(response.success){
+		// 		alert("show");
+		// 	} else {
+		// 		alert("droga");
+		// 	}
+		// });
 	}
 
 	saveCommentsOnDatabase(comentario){
@@ -119,8 +136,16 @@ class Local extends Component {
 		});
 	}
 
-	handleSubmit(cometario){
-		this.saveCommentsOnDatabase(cometario);
+	handleSubmit(local){
+		console.log(this.state.local._id);
+		let _local = {
+			_id: this.state.local._id,
+			nome: local.nome,
+			descricao: local.descricao,
+			horario: local.horario,
+		}
+		this.saveOnDatabase(_local);
+		this.toggle();
 	}
 
 	handleCommentSubmit(cometario){
@@ -197,7 +222,7 @@ class Local extends Component {
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Editar Local</ModalHeader>
 					<ModalBody>
-						<FormLocals value={this.state.local} handleSubmit={this.handleSubmit}/>
+						<FormLocals value={this.state.local} handleSubmit={this.handleSubmit} alter={true}/>
 					</ModalBody>
 				</Modal>
 			</Container>

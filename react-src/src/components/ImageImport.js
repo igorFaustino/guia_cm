@@ -14,14 +14,19 @@ class ImageImport extends React.Component {
 
   uploadFiles(files) {
     this.props.handleImage(files[0]);
+    let preview = files[0].preview;
     this.setState({
+      preview: preview,
       disabled: true
-    })
+    });
   }
 
 
   render() {
-    let dropZoneText = !this.state.disabled?'Solte uma imagem aqui':'Imagem aceita';
+    let dropZoneText = !this.state.disabled?'Solte uma imagem aqui':<img src={this.state.preview} style={{
+      maxHeight: 200,
+      maxWidth: 170
+    }}/>;
     let dropzoneRef;
     return (
       <div>

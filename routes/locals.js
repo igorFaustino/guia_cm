@@ -5,7 +5,8 @@ const passport = require('passport');
 
 // Retorna todos os locais
 router.get('/locals', function (req, res) {
-	Local.getAllLocals(function (err, locals) {
+	let categoria = req.query.categoria;
+	Local.getAllLocals(categoria, function (err, locals) {
 		if (err){
 			res.send(err);
 		}

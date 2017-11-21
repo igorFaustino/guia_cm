@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import {  Row, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Row, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import superagent from 'superagent';
 
 import Local from '../components/LocalsItem.js';
 import FormLocals from '../components/FormLocals.js';
 
+
 const localStorageAuth = require('../util/localHostAuth.js');
 
 class ListaLocais extends Component {
-	constructor(){
+	constructor() {
 		super();
 		this.state = {
 			filterLocals: [],
@@ -25,58 +27,90 @@ class ListaLocais extends Component {
 		this.saveOnDatabase = this.saveOnDatabase.bind(this);
 	}
 
-	componentWillMount(){
+	componentWillMount() {
 		this.getLocalsFromDatabase();
 	}
 
-	getLocalsFromDatabase(){
-		fetch('http://localhost:5000/api/locals', {
-			method: 'GET',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
-			}
-		}).then((response) => response.json()).then((json) => {
-			this.setState({
-				locals: json
+	getLocalsFromDatabase() {
+		superagent.get('http://localhost:5000/api/locals')
+			.query({ categoria: categoryFormat(this.props) })
+			.set('Content-Type', 'application/json')
+			.end((err, response) => {
+				this.setState({
+					locals: response.body
+				});
+				console.log(response);
 			});
-			console.log(json);
-		});
+		// fetch('http://localhost:5000/api/locals', {
+		// 	method: 'GET',
+		// 	headers: {
+		// 		'Accept': 'application/json',
+		// 		'Content-Type': 'application/json',
+		// 		'Access-Control-Allow-Origin': '*'
+		// 	}
+		// }).then((response) => response.json()).then((json) => {
+		// 	this.setState({
+		// 		locals: json
+		// 	});
+		// 	console.log(json);
+		// });
 	}
 
-	saveOnDatabase(local){
-		fetch('http://localhost:5000/api/local', {
-			method: 'POST',
-			// mode: 'no-cors',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*',
-				'Authorization': localStorage.getItem('admin'),
-			},
-			body: JSON.stringify({
+	saveOnDatabase(local) {
+		superagent.post('http://localhost:5000/api/local')
+			.set('Accept', 'application/json')
+			.set('Authorization', localStorage.getItem('admin'))
+			.send({
 				'nome': local.nome,
 				'descricao': local.desc,
 				'endereco': local.endereco,
 				'horario': local.horario,
 				'image': local.image,
 				'cordenadas': local.coordenadas,
+				'categoria': categoryFormat(this.props),
 			})
-		}).then((response) => response.json()).then((json) => {
-			if(json.success){
-				this.setState({
-					locals: this.state.locals.concat(json.local),
-					filterLocals: []
-				});
-				alert("show");
-			} else {
-				alert("droga");
-			}
-		});
+			.end((err, response) => {
+				if (response.body.success) {
+					this.setState({
+						locals: this.state.locals.concat(response.body.local),
+						filterLocals: []
+					});
+					alert("show");
+				} else {
+					alert("droga");
+				}
+			});
+		// fetch('http://localhost:5000/api/local', {
+		// 	method: 'POST',
+		// 	// mode: 'no-cors',
+		// 	headers: {
+		// 		'Accept': 'application/json',
+		// 		'Content-Type': 'application/json',
+		// 		'Access-Control-Allow-Origin': '*',
+		// 		'Authorization': localStorage.getItem('admin'),
+		// 	},
+		// 	body: JSON.stringify({
+		// 		'nome': local.nome,
+		// 		'descricao': local.desc,
+		// 		'endereco': local.endereco,
+		// 		'horario': local.horario,
+		// 		'image': local.image,
+		// 		'cordenadas': local.coordenadas,
+		// 	})
+		// }).then((response) => response.json()).then((json) => {
+		// 	if(json.success){
+		// 		this.setState({
+		// 			locals: this.state.locals.concat(json.local),
+		// 			filterLocals: []
+		// 		});
+		// 		alert("show");
+		// 	} else {
+		// 		alert("droga");
+		// 	}
+		// });
 	}
 
-	deleteFromDatabase(deletedLocal){
+	deleteFromDatabase(deletedLocal) {
 		fetch('http://localhost:5000/api/local/' + deletedLocal._id, {
 			method: 'DELETE',
 			// mode: 'no-cors',
@@ -87,11 +121,11 @@ class ListaLocais extends Component {
 				'Authorization': localStorage.getItem('admin'),
 			},
 		}).then((response) => response.json()).then((json) => {
-			if(json.success){
+			if (json.success) {
 				alert("show");
 				let locals = this.state.locals;
-				locals = locals.filter((local)=>{
-					if(local._id !== deletedLocal._id){
+				locals = locals.filter((local) => {
+					if (local._id !== deletedLocal._id) {
 						return true;
 					}
 					return false;
@@ -107,16 +141,16 @@ class ListaLocais extends Component {
 	}
 
 
-	handleValueChange(e){
-		this.setState({value: e.target.value});
+	handleValueChange(e) {
+		this.setState({ value: e.target.value });
 	}
 
-	handleSubmit(local){
+	handleSubmit(local) {
 		this.saveOnDatabase(local);
 		this.toggle();
 	}
 
-	handleDelete(deletedLocal){
+	handleDelete(deletedLocal) {
 
 		this.deleteFromDatabase(deletedLocal);
 	}
@@ -124,7 +158,7 @@ class ListaLocais extends Component {
 	search(e) {
 		e.preventDefault()
 		let value = this.state.value
-		if(this.state.locals){
+		if (this.state.locals) {
 			let locals = this.state.locals.map(local => {
 				return local;
 			});
@@ -134,7 +168,7 @@ class ListaLocais extends Component {
 				}
 				return false;
 			});
-			if(locals.length > 0){
+			if (locals.length > 0) {
 				this.setState({
 					filterLocals: locals,
 					value: ''
@@ -159,7 +193,7 @@ class ListaLocais extends Component {
 		let category = categoryTitle(this.props);
 		let locals;
 		// let filterLocals;
-		if(this.state.filterLocals.length > 0){
+		if (this.state.filterLocals.length > 0) {
 			locals = this.state.filterLocals.map(local => {
 				return (
 					<Local key={local.nome} local={local} />
@@ -168,14 +202,14 @@ class ListaLocais extends Component {
 		} else {
 			locals = this.state.locals.map(local => {
 				return (
-					<Local key={local._id} local={local} delete={this.handleDelete}/>
+					<Local key={local._id} local={local} delete={this.handleDelete} />
 				);
-			});	
+			});
 		}
 
 		// add button
 		let addButton;
-		if(localStorageAuth.thereIsAdim()){
+		if (localStorageAuth.thereIsAdim()) {
 			addButton = <Button className="circle-btn btn-lg" onClick={this.toggle} >+</Button>;
 		}
 
@@ -206,7 +240,13 @@ class ListaLocais extends Component {
 
 function categoryTitle(props) {
 	let category = props.match.params.categoria;
-	category = category[0].toUpperCase() + category.slice(1,);
+	category = category[0].toUpperCase() + category.slice(1, );
+	return category;
+}
+
+function categoryFormat(props) {
+	let category = props.match.params.categoria;
+	category = category.replace(/\s+/g, '+');
 	return category;
 }
 

@@ -41,8 +41,10 @@ module.exports.getLocalById = function (id, callback) {
 }
 
 // Pega todos os locais
-module.exports.getAllLocals = function (callback) {
-	Local.find({}, callback);
+module.exports.getAllLocals = function (categoria, callback) {
+	Local.find({
+		categoria: categoria
+	}, callback);
 }
 
 // Adicionar novo local
@@ -56,12 +58,8 @@ module.exports.updateLocal = function (updatedLocal, callback){
 		if (err) res.send(err);
 		if (local) {
 			local.nome = updatedLocal.nome;
-			local.cordenadas = updatedLocal.cordenadas;
-			local.endereco = updatedLocal.endereco;
 			local.descricao = updatedLocal.descricao;
-			local.image = updatedLocal.image;
 			local.horario = updatedLocal.horario;
-			local.categoria = updatedLocal.categoria;
 			local.save(callback);
 		}
 	})

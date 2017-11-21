@@ -91,59 +91,65 @@ class FormLocals extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		if (!this.props.alter) {
+			const image = this.state.image;
 
-		const image = this.state.image;
+			const cloudName = config.cloudName;
+			const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
 
-		const cloudName = config.cloudName;
-		const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+			const timestamp = Date.now() / 1000;
+			const uploadPreset = 'ymhhb6uf';
 
-		const timestamp = Date.now() / 1000;
-		const uploadPreset = 'ymhhb6uf';
+			const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' +
+				uploadPreset + config.secret;
 
-		const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' +
-			uploadPreset + config.secret;
-
-		const signature = sha1(paramsStr);
-		const params = {
-			api_key: config.apiKey,
-			timestamp: timestamp,
-			upload_preset: uploadPreset,
-			signature: signature
-		}
-
-		let uploadRequest = superagent.post(url);
-		uploadRequest.attach('file', image);
-
-		Object.keys(params).forEach((key) => {
-			uploadRequest.field(key, params[key])
-		});
-
-		let link;
-		uploadRequest.end((err, res) => {
-			if (err) {
-				// callback(err, null)
-				return
+			const signature = sha1(paramsStr);
+			const params = {
+				api_key: config.apiKey,
+				timestamp: timestamp,
+				upload_preset: uploadPreset,
+				signature: signature
 			}
-			let string = this.state.local.replace(/\s/g, "+") + "+campo+mourao+parana";
-			console.log(string);
-			fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + string + "&key=" + mapaConfig.apiKey)
-			.then((response) =>
-			response.json())
-			.then((json) =>
-			{
-				console.log(res.body.url);
-				console.log(json.results[0]);
-				var local = {
-					nome: this.state.nome,
-					descricao: this.state.desc,
-					endereco: this.state.local,
-					horario: this.state.horario,
-					coordenadas: json.results[0].geometry.location,
-					image: res.body.url,
-				}
-				this.props.handleSubmit(local);
+
+			let uploadRequest = superagent.post(url);
+			uploadRequest.attach('file', image);
+
+			Object.keys(params).forEach((key) => {
+				uploadRequest.field(key, params[key])
 			});
-		});
+
+			let link;
+			uploadRequest.end((err, res) => {
+				if (err) {
+					// callback(err, null)
+					return
+				}
+				let string = this.state.local.replace(/\s/g, "+") + "+campo+mourao+parana";
+				console.log(string);
+				fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + string + "&key=" + mapaConfig.apiKey)
+					.then((response) =>
+						response.json())
+					.then((json) => {
+						var local = {
+							nome: this.state.nome,
+							descricao: this.state.desc,
+							endereco: this.state.local,
+							horario: this.state.horario,
+							coordenadas: json.results[0].geometry.location,
+							image: res.body.url,
+						}
+						this.props.handleSubmit(local);
+					});
+			});
+		} else {
+			var local = {
+				nome: this.state.nome,
+				descricao: this.state.desc,
+				// endereco: this.state.local,
+				horario: this.state.horario,
+			}
+			this.props.handleSubmit(local);
+		}
 	}
 
 
