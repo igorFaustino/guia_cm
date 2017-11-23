@@ -3,6 +3,7 @@ import { Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reactstra
 import  EventosItem from '../components/EventosItem';
 import  FormEvents from '../components/FormEvents';
 
+const alertify  = require('react-alertify-js');
 const localStorageAuth = require('../util/localHostAuth.js');
 
 class ListaEventos extends Component {
@@ -53,14 +54,14 @@ class ListaEventos extends Component {
 			})
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
-				alert("daora");
+				alertify.alert("daora");
 				this.setState({
 					eventos: this.state.eventos.concat(evento),
 					filterEventos: []
 				});
 			}
 			else{
-				alert("deu ruim");
+				alertify.alert("deu ruim");
 			}
 		});
 	}
@@ -76,7 +77,7 @@ class ListaEventos extends Component {
 			}
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
-				alert("daora");
+				alertify.alert("daora");
 				let eventos = this.state.eventos;
 				eventos = eventos.filter((evento) => {
 					if(evento._id !== deletedEvento._id){
@@ -90,7 +91,7 @@ class ListaEventos extends Component {
 				});
 			}
 			else{
-				alert("deu ruim");
+				alertify.alert("deu ruim");
 			}
 		});
 	}

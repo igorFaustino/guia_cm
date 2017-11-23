@@ -18,12 +18,12 @@
   },
   "homepage": "https://github.com/igorFaustino/guia_cm#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.15.4",
-    "firebase": "^4.5.0",
-    "firebase-admin": "^5.4.2",
-    "mongoose": "^4.11.8",
+    "express": "^4.16.2",
+    "firebase": "^4.6.2",
+    "firebase-admin": "^5.5.1",
+    "mongoose": "^4.13.4",
     "passport": "^0.4.0",
     "passport-jwt": "2.2.1"
   },

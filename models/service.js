@@ -25,8 +25,10 @@ module.exports.getServiceById = function (id, callback) {
 }
 
 // Pega todos os serviços
-module.exports.getAllServices = function (callback) {
-	Service.find({}, callback);
+module.exports.getAllServices = function (categoria, callback) {
+	Service.find({
+		categoria: categoria
+	}, callback);
 }
 
 // Adicionar novo serviço

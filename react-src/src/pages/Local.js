@@ -9,6 +9,7 @@ import Comentarios from '../components/Comentarios'
 
 import FormLocals from '../components/FormLocals.js';
 
+const { alertify } = require('react-alertify-js');
 const localStorageAuth = require('../util/localHostAuth.js');
 
 

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Col, Container, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import superagent from 'superagent';
+
 import FormService from '../components/FormService';
 import ServicoItem from '../components/ServicoItem';
+
+const { alertify } = require('react-alertify-js');
 
 const localStorageAuth = require('../util/localHostAuth.js');
 
@@ -23,16 +27,24 @@ class ListaServicos extends Component {
 	}
 
 	getServicosFromDatabase(){
-		fetch('http://localhost:5000/api/services',{
-			method: 'GET',
-			headers:{
-				'Content-Type': 'application/json',
-			}
-		}).then((response) => response.json()).then((json) => {
+		superagent.get('http://localhost:5000/api/services')
+		.query({ categoria: categoryFormat(this.props) })
+		.set('Content-Type', 'application/json')
+		.end((err, response) => {
 			this.setState({
-				servico: json
+				servico: response.body
 			});
 		});
+		// fetch('http://localhost:5000/api/services',{
+		// 	method: 'GET',
+		// 	headers:{
+		// 		'Content-Type': 'application/json',
+		// 	}
+		// }).then((response) => response.json()).then((json) => {
+		// 	this.setState({
+		// 		servico: json
+		// 	});
+		// });
 	}
 
 	saveOnDatabase(servico){
@@ -51,9 +63,10 @@ class ListaServicos extends Component {
 			})
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
+				console.log(json);
 				alert("daora");
 				this.setState({
-					servico: this.state.servico.concat(servico),
+					servico: this.state.servico.concat(json.service),
 				});
 			}
 			else{
@@ -141,6 +154,12 @@ class ListaServicos extends Component {
 			
 	}
 	
+}
+
+function categoryFormat(props) {
+	let category = props.match.params.servico;
+	category = category.replace(/\s+/g, '+');
+	return category;
 }
 
 export default ListaServicos;
