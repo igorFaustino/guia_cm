@@ -3,6 +3,8 @@ import { Row, Col, Container, Button, Modal, ModalHeader, ModalBody } from 'reac
 import { Redirect } from 'react-router'
 import  FormEvents from '../components/FormAdmin';
 
+const { alertify } = require('react-alertify-js');
+
 const localStorageAuth = require('../util/localHostAuth.js');
 
 class Perfil extends Component {

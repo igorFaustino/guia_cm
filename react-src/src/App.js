@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Container,  Jumbotron } from 'reactstrap';
 
+
 import {
 	BrowserRouter as Router,
 	Route,
@@ -17,6 +18,8 @@ import ListaServicos from './pages/ListaServicos.js';
 import Login from './pages/Login.js';
 import Perfil from './pages/Perfil.js';
 
+
+const { alertify } = require('react-alertify-js');
 const localStorageAuth = require('./util/localHostAuth.js');
 const firebase = require('firebase');
 
@@ -134,7 +137,7 @@ class App extends Component {
 			});
 
 		}).catch(function(error) {
-			alert("Ocoreu uma falha");
+			alertify.alert("Ocoreu uma falha");
 		});
 	}
 

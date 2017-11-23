@@ -5,7 +5,8 @@ const passport = require('passport');
 
 // Retorna todos os Serviços
 router.get('/services', function (req, res) {
-	Service.getAllServices(function (err, services) {
+	let categoria = req.query.categoria;
+	Service.getAllServices(categoria, function (err, services) {
 		if (err){
 			res.send(err);
 		}
