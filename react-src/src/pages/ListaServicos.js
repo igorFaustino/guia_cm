@@ -35,16 +35,6 @@ class ListaServicos extends Component {
 				servico: response.body
 			});
 		});
-		// fetch('http://localhost:5000/api/services',{
-		// 	method: 'GET',
-		// 	headers:{
-		// 		'Content-Type': 'application/json',
-		// 	}
-		// }).then((response) => response.json()).then((json) => {
-		// 	this.setState({
-		// 		servico: json
-		// 	});
-		// });
 	}
 
 	saveOnDatabase(servico){

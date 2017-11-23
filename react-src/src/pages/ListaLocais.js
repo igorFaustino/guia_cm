@@ -40,19 +40,6 @@ class ListaLocais extends Component {
 					locals: response.body
 				});
 			});
-		// fetch('http://localhost:5000/api/locals', {
-		// 	method: 'GET',
-		// 	headers: {
-		// 		'Accept': 'application/json',
-		// 		'Content-Type': 'application/json',
-		// 		'Access-Control-Allow-Origin': '*'
-		// 	}
-		// }).then((response) => response.json()).then((json) => {
-		// 	this.setState({
-		// 		locals: json
-		// 	});
-		// 	console.log(json);
-		// });
 	}
 
 	saveOnDatabase(local) {
@@ -79,34 +66,6 @@ class ListaLocais extends Component {
 					alert("droga");
 				}
 			});
-		// fetch('http://localhost:5000/api/local', {
-		// 	method: 'POST',
-		// 	// mode: 'no-cors',
-		// 	headers: {
-		// 		'Accept': 'application/json',
-		// 		'Content-Type': 'application/json',
-		// 		'Access-Control-Allow-Origin': '*',
-		// 		'Authorization': localStorage.getItem('admin'),
-		// 	},
-		// 	body: JSON.stringify({
-		// 		'nome': local.nome,
-		// 		'descricao': local.desc,
-		// 		'endereco': local.endereco,
-		// 		'horario': local.horario,
-		// 		'image': local.image,
-		// 		'cordenadas': local.coordenadas,
-		// 	})
-		// }).then((response) => response.json()).then((json) => {
-		// 	if(json.success){
-		// 		this.setState({
-		// 			locals: this.state.locals.concat(json.local),
-		// 			filterLocals: []
-		// 		});
-		// 		alert("show");
-		// 	} else {
-		// 		alert("droga");
-		// 	}
-		// });
 	}
 
 	deleteFromDatabase(deletedLocal) {
