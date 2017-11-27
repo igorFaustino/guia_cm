@@ -85,13 +85,13 @@ class App extends Component {
 					
 				},
 				{
-					nome: 'Encanador',
-					img: require('./img/encanador.jpg')
+					nome: 'Gás',
+					img: require('./img/gas.jpg')
 					
 				},
 				{
-					nome: 'Detetização',
-					img: require('./img/detetizacao.jpg')
+					nome: 'Rodoviária',
+					img: require('./img/rodoviaria.jpg')
 					
 				}
 			]
