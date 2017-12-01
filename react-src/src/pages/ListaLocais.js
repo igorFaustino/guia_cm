@@ -6,7 +6,7 @@ import Local from '../components/LocalsItem.js';
 import FormLocals from '../components/FormLocals.js';
 
 const localStorageAuth = require('../util/localHostAuth.js');
-const { alertify } = require('react-alertify-js');
+
 
 class ListaLocais extends Component {
 	constructor() {

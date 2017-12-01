@@ -125,7 +125,6 @@ class FormLocals extends Component {
 					return
 				}
 				let string = this.state.local.replace(/\s/g, "+") + "+campo+mourao+parana";
-				console.log(string);
 				fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + string + "&key=" + mapaConfig.apiKey)
 					.then((response) =>
 						response.json())

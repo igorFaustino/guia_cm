@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button , InputGroup, Input} from 'reactstrap';
 import { Redirect } from 'react-router'
 
-const { alertify } = require('react-alertify-js');
+
 const firebase = require('firebase');
 const localStorageAuth = require('../util/localHostAuth.js');
 

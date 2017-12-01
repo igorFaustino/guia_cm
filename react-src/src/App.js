@@ -19,7 +19,6 @@ import Login from './pages/Login.js';
 import Perfil from './pages/Perfil.js';
 
 
-const { alertify } = require('react-alertify-js');
 const localStorageAuth = require('./util/localHostAuth.js');
 const firebase = require('firebase');
 
@@ -62,6 +61,38 @@ class App extends Component {
 			{
 				nome: 'Compras',
 				img: require ('./img/compras.jpg')
+			},
+			{
+				nome: 'Atividades fisicas',
+				img: require('./img/atividade.jpg')
+			},
+			{
+				nome: 'Comer no Domingo',
+				img: require('./img/domingo.jpg')
+			},
+			{
+				nome: 'Imobiliária',
+				img: require('./img/imobiliaria.jpg')
+			},
+			{
+				nome: 'Sebo',
+				img: require('./img/sebo.jpg')
+			},
+			{
+				nome: 'Hospitais e Farmácias',
+				img: require('./img/farmacia.jpg')
+			},
+			{
+				nome: 'Banco',
+				img: require('./img/dinheiro.jpg')
+			},
+			{
+				nome: 'Moveis Usados',
+				img: require('./img/moveis.jpg')
+			},
+			{
+				nome: 'Mercados baratos',
+				img: require('./img/mercado.jpg')
 			}],
 			categoriesServicos: [
 				{
@@ -137,7 +168,7 @@ class App extends Component {
 			});
 
 		}).catch(function(error) {
-			alertify.alert("Ocoreu uma falha");
+			alert("Ocoreu uma falha");
 		});
 	}
 

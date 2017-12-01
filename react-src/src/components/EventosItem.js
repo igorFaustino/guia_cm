@@ -41,7 +41,9 @@ class EventosItem extends Component {
 								<h3>{this.props.evento.titulo}</h3>
 								<h3>{this.props.evento.local}</h3>
 								<h3>{this.props.evento.data}</h3>
-								<Button color="primary" size="lg" block>Acesse o site oficial</Button>
+								<a className="btn btn-primary btn-block btn-lg" style={{
+									color: 'white'
+								}} href={this.props.evento.link} target="_blank">Acesse o site oficial</a>
 							</Container>
 						</Col>
 					</Row>

@@ -5,7 +5,7 @@ import superagent from 'superagent';
 import FormService from '../components/FormService';
 import ServicoItem from '../components/ServicoItem';
 
-const { alertify } = require('react-alertify-js');
+
 
 const localStorageAuth = require('../util/localHostAuth.js');
 
@@ -53,14 +53,13 @@ class ListaServicos extends Component {
 			})
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
-				console.log(json);
-				alert("daora");
+				alert("Sucesso ao realizar operação");
 				this.setState({
 					servico: this.state.servico.concat(json.service),
 				});
 			}
 			else{
-				alert("deu ruim");
+				alert("Falha ao realizar operação");
 			}
 		});
 	}
@@ -76,7 +75,7 @@ class ListaServicos extends Component {
 			}
 		}).then((response) => response.json()).then((json) => {
 			if(json.success){
-				alert("daora");
+				alert("Sucesso ao realizar operação");
 				let servico = this.state.servico;
 				servico = servico.filter((servico) => {
 					if(servico._id !== deletedServico._id){
@@ -89,7 +88,7 @@ class ListaServicos extends Component {
 				});
 			}
 			else{
-				alert("deu ruim");
+				alert("Falha ao realizar operação");
 			}
 		});	
 	}

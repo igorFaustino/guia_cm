@@ -9,7 +9,7 @@ import Comentarios from '../components/Comentarios'
 
 import FormLocals from '../components/FormLocals.js';
 
-const { alertify } = require('react-alertify-js');
+
 const localStorageAuth = require('../util/localHostAuth.js');
 
 
@@ -64,14 +64,11 @@ class Local extends Component {
 
 
 	saveOnDatabase(local) {
-		console.log(local);
-		console.log("HELLOOOOOO")
 		superagent.put('http://localhost:5000/api/local')
 			.set('Authorization', localStorage.getItem('admin'))
 			.set('Content-Type', 'application/json')
 			.send(local)
 			.end((err, res) => {
-				console.log(res);
 				if (res.body.success) {
 					let updatedLocal = this.state.local;
 					updatedLocal.nome = local.nome;
@@ -82,7 +79,7 @@ class Local extends Component {
 					})
 					alert('SHOW')
 				} else {
-					alert('DEU RUIM')
+					alert('Falha ao realizar operação')
 				}
 			})
 	}
@@ -122,7 +119,6 @@ class Local extends Component {
 	}
 
 	handleSubmit(local) {
-		console.log(this.state.local._id);
 		let _local = {
 			_id: this.state.local._id,
 			nome: local.nome,
@@ -185,7 +181,7 @@ class Local extends Component {
 							<p>{this.state.local.descricao}</p>
 							<p>{this.state.local.endereco}</p>
 							<p>{this.state.local.horario}</p>
-							<Button color="primary" size="lg" block disabled>Acessar site</Button>
+							{/* <Button color="primary" size="lg" block disabled>Acessar site</Button> */}
 						</Container>
 					</Col>
 				</Row>

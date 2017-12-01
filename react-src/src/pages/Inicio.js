@@ -31,29 +31,17 @@ class Inicio extends Component {
 			tamanho: 6,
 			v: [
 				{
-					nome: 'LUGAR 1',
-					desc: 'DESC 1'
+					nome: 'Subway',
+					desc: 'Aberto todos os dias 11:00 - 23:30'
 				},
 				{
-					nome: 'LUGAR 2',
-					desc: 'DESC 2'
+					nome: 'Academia Planeta Fitness',
+					desc: 'De Segunda a Sexta 06:00-10:30 14:00-00:00'
 				},
 				{
-					nome: 'LUGAR 3',
-					desc: 'DESC 3'
-				},
-				{
-					nome: 'LUGAR 4',
-					desc: 'DESC 4'
-				},
-				{
-					nome: 'LUGAR 5',
-					desc: 'DESC 5'
-				},
-				{
-					nome: 'LUGAR 6',
-					desc: 'DESC 6'
-				},
+					nome: 'Supermercado BomDia',
+					desc: 'De Segunda a Sabado 08:30–20:30 e Domingo 08:30–13:00'
+				}
 			]
 		}
 
@@ -99,7 +87,6 @@ class Inicio extends Component {
 					}
 				]
 			});
-		console.log(this.state);
 	}
 
 	nextSlide(indice) {
