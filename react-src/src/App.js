@@ -151,7 +151,7 @@ class App extends Component {
 			localStorage.setItem('token', token);
 
 			firebase.auth().currentUser.getToken(/* forceRefresh */ true).then(function(idToken) {
-				fetch('http://localhost:5000/users/login', {
+				fetch('https://guia-cm.herokuapp.comusers/login', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'

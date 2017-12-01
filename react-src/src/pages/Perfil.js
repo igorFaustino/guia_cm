@@ -31,7 +31,7 @@ class Perfil extends Component {
 	}
 
     saveOnDatabase(admin){
-		fetch('http://localhost:5000/users/admin', {
+		fetch('https://guia-cm.herokuapp.comusers/admin', {
 			method: 'POST',
 			// mode: 'no-cors',
 			headers: {

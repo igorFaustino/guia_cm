@@ -37,7 +37,7 @@ class Local extends Component {
 	}
 
 	getLocalsFromDatabase() {
-		fetch('http://localhost:5000/api/local/' + this.props.match.params.id, {
+		fetch('https://guia-cm.herokuapp.comapi/local/' + this.props.match.params.id, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ class Local extends Component {
 	}
 
 	getCommentsFromDatabase = () => {
-		fetch('http://localhost:5000/api/comment/' + this.props.match.params.id, {
+		fetch('https://guia-cm.herokuapp.comapi/comment/' + this.props.match.params.id, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ class Local extends Component {
 
 
 	saveOnDatabase(local) {
-		superagent.put('http://localhost:5000/api/local')
+		superagent.put('https://guia-cm.herokuapp.comapi/local')
 			.set('Authorization', localStorage.getItem('admin'))
 			.set('Content-Type', 'application/json')
 			.send(local)
@@ -93,7 +93,7 @@ class Local extends Component {
 			userImage: user.photoURL,
 			comentario: comentario,
 		}
-		fetch('http://localhost:5000/api/comment/' + this.props.match.params.id, {
+		fetch('https://guia-cm.herokuapp.comapi/comment/' + this.props.match.params.id, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -134,7 +134,7 @@ class Local extends Component {
 	}
 
 	deleteFromDatabase(deletedComment) {
-		fetch('http://localhost:5000/api/local/' + deletedComment._id, {
+		fetch('https://guia-cm.herokuapp.comapi/local/' + deletedComment._id, {
 			method: 'DELETE',
 			headers: {
 				'Accept': 'application/json',

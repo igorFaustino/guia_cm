@@ -32,7 +32,7 @@ class ListaLocais extends Component {
 	}
 
 	getLocalsFromDatabase() {
-		superagent.get('http://localhost:5000/api/locals')
+		superagent.get('https://guia-cm.herokuapp.comapi/locals')
 			.query({ categoria: categoryFormat(this.props) })
 			.set('Content-Type', 'application/json')
 			.end((err, response) => {
@@ -43,7 +43,7 @@ class ListaLocais extends Component {
 	}
 
 	saveOnDatabase(local) {
-		superagent.post('http://localhost:5000/api/local')
+		superagent.post('https://guia-cm.herokuapp.comapi/local')
 			.set('Accept', 'application/json')
 			.set('Authorization', localStorage.getItem('admin'))
 			.send({
@@ -69,7 +69,7 @@ class ListaLocais extends Component {
 	}
 
 	deleteFromDatabase(deletedLocal) {
-		fetch('http://localhost:5000/api/local/' + deletedLocal._id, {
+		fetch('https://guia-cm.herokuapp.comapi/local/' + deletedLocal._id, {
 			method: 'DELETE',
 			// mode: 'no-cors',
 			headers: {

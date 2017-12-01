@@ -27,7 +27,7 @@ class ListaServicos extends Component {
 	}
 
 	getServicosFromDatabase(){
-		superagent.get('http://localhost:5000/api/services')
+		superagent.get('https://guia-cm.herokuapp.comapi/services')
 		.query({ categoria: categoryFormat(this.props) })
 		.set('Content-Type', 'application/json')
 		.end((err, response) => {
@@ -39,7 +39,7 @@ class ListaServicos extends Component {
 
 	saveOnDatabase(servico){
 		servico.categoria = categoryFormat(this.props);
-		fetch('http://localhost:5000/api/service',{
+		fetch('https://guia-cm.herokuapp.comapi/service',{
 			method: 'POST',
 			headers:{
 				'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ class ListaServicos extends Component {
 	}
 
 	deleteFromDatabase(deletedServico){
-		fetch('http://localhost:5000/api/service/' + deletedServico._id, {
+		fetch('https://guia-cm.herokuapp.comapi/service/' + deletedServico._id, {
 			method: 'DELETE',
 			headers: {
 				'Accept': 'application/json',
