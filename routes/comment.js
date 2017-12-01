@@ -35,7 +35,7 @@ router.post('/comment/:local', function (req, res) {;
 // Deletar comentario
 router.delete('/comment/:id', passport.authenticate('jwt', { session: false}), function (req, res) {
 	var id = req.params.id;
-	Comment.deleteEvent(id, function (err, task) {
+	Comment.deleteComments(id, function (err, task) {
 		if (err) {
 			res.json({success: false, msg: 'Falha ao deletar evento'});
 		} else {
