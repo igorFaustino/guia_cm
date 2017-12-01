@@ -10,7 +10,7 @@ import {
 class CategoriaItem extends Component {
 
 	render() {
-		let link = this.props.link + this.props.category.nome.toLowerCase();
+		let link = this.props.link + categoryFormat(this.props);
 		return (
 			<Col lg="3" md="4" sm="6" xs="12">
 				<Link to={link} className="link">
@@ -26,6 +26,12 @@ class CategoriaItem extends Component {
 			</Col>
 		);
 	}
+}
+
+function categoryFormat(props) {
+	let category = props.category.nome.toLowerCase();
+	category = category.replace(/\s+/g, '+');
+	return category;
 }
 
 export default CategoriaItem;

@@ -38,7 +38,7 @@ class ListaServicos extends Component {
 	}
 
 	saveOnDatabase(servico){
-		servico.categoria = this.props.match.params.servico;
+		servico.categoria = categoryFormat(this.props);
 		fetch('http://localhost:5000/api/service',{
 			method: 'POST',
 			headers:{
