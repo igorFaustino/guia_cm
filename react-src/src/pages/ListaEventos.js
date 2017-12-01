@@ -32,7 +32,7 @@ class ListaEventos extends Component {
 	}
 
 	getEventsFromDatabase() {
-		fetch('https://guia-cm.herokuapp.comapi/events', {
+		fetch('https://guia-cm.herokuapp.com/api/events', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ class ListaEventos extends Component {
 	}
 
 	saveOnDatabase(evento) {
-		fetch('https://guia-cm.herokuapp.comapi/event', {
+		fetch('https://guia-cm.herokuapp.com/api/event', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ class ListaEventos extends Component {
 	}
 
 	deleteFromDatabase(deletedEvento) {
-		fetch('https://guia-cm.herokuapp.comapi/event/' + deletedEvento._id, {
+		fetch('https://guia-cm.herokuapp.com/api/event/' + deletedEvento._id, {
 			method: 'DELETE',
 			headers: {
 				'Accept': 'application/json',

@@ -24,11 +24,13 @@ class Local extends Component {
 		}
 		this.toggle = this.toggle.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 		this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
 		this.saveOnDatabase = this.saveOnDatabase.bind(this);
 		this.saveCommentsOnDatabase = this.saveCommentsOnDatabase.bind(this);
 		this.getLocalsFromDatabase = this.getLocalsFromDatabase.bind(this);
 		this.getCommentsFromDatabase = this.getCommentsFromDatabase.bind(this);
+		this.deleteFromDatabase = this.deleteFromDatabase.bind(this)
 	}
 
 	componentWillMount() {
@@ -37,7 +39,7 @@ class Local extends Component {
 	}
 
 	getLocalsFromDatabase() {
-		fetch('https://guia-cm.herokuapp.comapi/local/' + this.props.match.params.id, {
+		fetch('https://guia-cm.herokuapp.com/api/local/' + this.props.match.params.id, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -50,7 +52,7 @@ class Local extends Component {
 	}
 
 	getCommentsFromDatabase = () => {
-		fetch('https://guia-cm.herokuapp.comapi/comment/' + this.props.match.params.id, {
+		fetch('https://guia-cm.herokuapp.com/api/comment/' + this.props.match.params.id, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -64,7 +66,7 @@ class Local extends Component {
 
 
 	saveOnDatabase(local) {
-		superagent.put('https://guia-cm.herokuapp.comapi/local')
+		superagent.put('https://guia-cm.herokuapp.com/api/local')
 			.set('Authorization', localStorage.getItem('admin'))
 			.set('Content-Type', 'application/json')
 			.send(local)
@@ -93,18 +95,19 @@ class Local extends Component {
 			userImage: user.photoURL,
 			comentario: comentario,
 		}
-		fetch('https://guia-cm.herokuapp.comapi/comment/' + this.props.match.params.id, {
+		fetch('https://guia-cm.herokuapp.com/api/comment/' + this.state.local._id, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(comment)
-		}).then((response) => {
-			if (response.success) {
+		}).then((response) => response.json()).then((json) => {
+			console.log(json)
+			if (json.success) {
 				alert("show");
 				this.setState({
-					comentarios: this.state.comentarios.concat(response.comment)
+					comentarios: this.state.comentarios.concat(json.comment)
 				})
 			} else {
 				alert("droga");
@@ -133,8 +136,12 @@ class Local extends Component {
 		this.saveCommentsOnDatabase(cometario);
 	}
 
+	handleDelete(comentario) {
+		this.deleteFromDatabase(comentario);
+	}
+
 	deleteFromDatabase(deletedComment) {
-		fetch('https://guia-cm.herokuapp.comapi/local/' + deletedComment._id, {
+		fetch('https://guia-cm.herokuapp.com/api/comment/' + deletedComment._id, {
 			method: 'DELETE',
 			headers: {
 				'Accept': 'application/json',
@@ -195,7 +202,7 @@ class Local extends Component {
 				<hr />
 				{editButton}
 				<Container>
-					<Comentarios comentarios={this.state.comentarios} handleSubmit={this.handleCommentSubmit} />
+					<Comentarios comentarios={this.state.comentarios} handleSubmit={this.handleCommentSubmit} delete={this.handleDelete}/>
 				</Container>
 				<Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
 					<ModalHeader toggle={this.toggle}>Editar Local</ModalHeader>

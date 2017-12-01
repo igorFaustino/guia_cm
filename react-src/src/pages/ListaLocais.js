@@ -32,7 +32,7 @@ class ListaLocais extends Component {
 	}
 
 	getLocalsFromDatabase() {
-		superagent.get('https://guia-cm.herokuapp.comapi/locals')
+		superagent.get('https://guia-cm.herokuapp.com/api/locals')
 			.query({ categoria: categoryFormat(this.props) })
 			.set('Content-Type', 'application/json')
 			.end((err, response) => {
@@ -43,7 +43,7 @@ class ListaLocais extends Component {
 	}
 
 	saveOnDatabase(local) {
-		superagent.post('https://guia-cm.herokuapp.comapi/local')
+		superagent.post('https://guia-cm.herokuapp.com/api/local')
 			.set('Accept', 'application/json')
 			.set('Authorization', localStorage.getItem('admin'))
 			.send({
@@ -69,7 +69,7 @@ class ListaLocais extends Component {
 	}
 
 	deleteFromDatabase(deletedLocal) {
-		fetch('https://guia-cm.herokuapp.comapi/local/' + deletedLocal._id, {
+		fetch('https://guia-cm.herokuapp.com/api/local/' + deletedLocal._id, {
 			method: 'DELETE',
 			// mode: 'no-cors',
 			headers: {
@@ -199,7 +199,9 @@ class ListaLocais extends Component {
 function categoryTitle(props) {
 	let category = props.match.params.categoria;
 	category = category[0].toUpperCase() + category.slice(1, );
-	category = category.replace('+', ' ');
+	category = category.replace(/([+])/g, ' ');
+	// category = category.replace('+', ' ');
+	// category = category.replace('+', ' ');
 	return category;
 }
 

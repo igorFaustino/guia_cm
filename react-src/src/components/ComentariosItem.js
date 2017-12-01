@@ -14,7 +14,7 @@ class ComentariosItem extends Component {
 
 	handleDelete(e){
 		e.preventDefault();
-		this.props.delete(this.props.evento)
+		this.props.delete(this.props.comentario)
 	}
 
 	render() {

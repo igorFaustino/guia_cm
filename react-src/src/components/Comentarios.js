@@ -13,6 +13,7 @@ class Comentarios extends Component {
 		var comentario;
 		this.handleComentarioChange = this.handleComentarioChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	handleComentarioChange(e) {
@@ -25,8 +26,16 @@ class Comentarios extends Component {
 	}
 
 	handleSubmit(e) {
-		// e.preventDefault();
-		this.props.handleSubmit(this.state.comentario);
+		e.preventDefault();
+		let comentario = this.state.comentario;
+		this.setState({
+			comentario: ''
+		})
+		this.props.handleSubmit(comentario);
+	}
+
+	handleDelete(comentario) {
+		this.props.delete(comentario)
 	}
 
 	render() {
