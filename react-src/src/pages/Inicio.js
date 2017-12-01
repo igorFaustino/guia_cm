@@ -45,7 +45,7 @@ class Inicio extends Component {
 					img: require('../img/imobiliaria.jpg')
 				},
 				{
-					nome: 'Sebo',
+					nome: 'Livraria',
 					img: require('../img/sebo.jpg')
 				},
 				{
