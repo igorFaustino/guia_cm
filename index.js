@@ -32,7 +32,7 @@ var app = express();
 app.use(cors());
 
 // set port
-var port = 5000;
+var port = process.env.PORT;
 
 // Set Static Folder 
 app.use(express.static(path.join(__dirname, 'react-src/build'))); 
