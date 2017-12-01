@@ -16,6 +16,7 @@
     "react-dropzone": "^4.2.3",
     "react-google-maps": "^8.3.1",
     "react-modal": "^2.3.2",
+    "react-responsive-carousel": "^3.1.29",
     "react-responsive-sidebar": "^0.1.16",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
