@@ -199,6 +199,7 @@ class ListaLocais extends Component {
 function categoryTitle(props) {
 	let category = props.match.params.categoria;
 	category = category[0].toUpperCase() + category.slice(1, );
+	category = category.replace('+', ' ');
 	return category;
 }
 
