@@ -1,5 +1,5 @@
-var user = 'guiacm';
-var password = 'root';
+var user = '';
+var password = '';
 
 module.exports = {
 	database: 'mongodb://' + user + ':' + password + '@ds159493.mlab.com:59493/guia_cm',
